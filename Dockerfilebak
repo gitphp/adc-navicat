@@ -1,0 +1,104 @@
+# =========================
+# 第一阶段：编译 xlswriter 扩展
+# =========================
+FROM php:8.2-cli-alpine AS builder
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+# 安装必要的构建依赖
+RUN apk add --no-cache \
+    autoconf \
+    make \
+    gcc \
+    g++ \
+    zlib-dev \
+    pkgconf \
+    curl \
+    libzip-dev \
+    gmp-dev \
+    build-base \
+    bash
+
+# 编译安装 libxlsxwriter (降级到 1.1.4，避免兼容问题)
+RUN mkdir /tmp/libxlsxwriter \
+    && curl -L https://github.com/jmcnamara/libxlsxwriter/archive/refs/tags/RELEASE_1.1.4.tar.gz \
+       -o /tmp/libxlsxwriter.tar.gz \
+    && tar -xzf /tmp/libxlsxwriter.tar.gz -C /tmp/libxlsxwriter --strip-components=1 \
+    && cd /tmp/libxlsxwriter \
+    && make \
+    && make install \
+    && rm -rf /tmp/libxlsxwriter*
+RUN apk add --no-cache git
+
+# 编译安装 php-ext-xlswriter（直接使用系统 libxlsxwriter）
+# 拉取完整 php-ext-xlswriter 源码（包含子模块）
+RUN git clone --branch v1.5.8 --recursive https://github.com/viest/php-ext-xlswriter.git /tmp/php-ext-xlswriter \
+    && cd /tmp/php-ext-xlswriter \
+    && phpize \
+    && ./configure --with-libxlsxwriter \
+    && make -j$(nproc) \
+    && make install \
+    && docker-php-ext-enable xlswriter \
+    && rm -rf /tmp/php-ext-xlswriter
+
+# 测试扩展是否安装成功
+RUN php -m | grep xlswriter
+
+# =========================
+# 第二阶段：运行时镜像（HyPerf）
+# =========================
+FROM hyperf/hyperf:8.2-alpine-v3.19-swoole-v6.0.2
+
+LABEL maintainer="Hyperf Developers <group@hyperf.io>" \
+      version="1.0" \
+      license="MIT" \
+      app.name="Hyperf"
+
+# ---------- env settings ----------
+ARG timezone
+ENV TIMEZONE=${timezone:-"Asia/Shanghai"}
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+# 安装运行时依赖（确保能加载 libxlsxwriter）
+RUN set -ex \
+    && apk update \
+    && apk add --no-cache \
+       php83-gmp gmp \
+       zlib \
+       libstdc++ \
+    && mkdir -p /usr/lib/php83/modules \
+    # 显示 PHP 信息
+    && php -v \
+    && php -m \
+    && php --ri swoole \
+    # PHP 配置
+    && cd /etc/php* \
+    && { \
+        echo "upload_max_filesize=128M"; \
+        echo "post_max_size=128M"; \
+        echo "memory_limit=1G"; \
+        echo "date.timezone=${TIMEZONE}"; \
+    } | tee conf.d/99_overrides.ini \
+    # 设置时区
+    && ln -sf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+    && echo "${TIMEZONE}" > /etc/timezone \
+    # 清理缓存
+    && rm -rf /var/cache/apk/* /tmp/* /usr/share/man \
+    && echo -e "\033[42;37m Build Completed :).\033[0m\n"
+
+# 从编译阶段复制扩展和库
+COPY --from=builder /usr/local/lib/php/extensions/no-debug-non-zts-*/xlswriter.so /usr/lib/php83/modules/
+COPY --from=builder /usr/local/lib/libxlsxwriter.so* /usr/local/lib/
+
+# 启用扩展
+RUN echo "extension=xlswriter.so" > /etc/php83/conf.d/50_xlswriter.ini
+
+# 可选：测试扩展是否加载成功
+RUN php -m | grep xlswriter || (echo "xlswriter extension not loaded" && exit 1)
+
+# 设置工作目录
+WORKDIR /opt/www
+
+# 复制项目
+COPY . /opt/www

@@ -1,0 +1,29 @@
+version: '3'
+services:
+  adc-container:
+    container_name: adc-merchant
+    image: tgkw-adc:php83_hyperf
+    restart: always
+    build:
+      context: .
+    volumes:
+      - ./:/opt/www
+      - /etc/hosts:/etc/hosts
+    ports:
+      - 9622:9622
+      - 9722:9722
+    environment:
+      - APP_ENV=${APP_ENV}
+      - SCAN_CACHEABLE=${SCAN_CACHEABLE}
+      - TZ=Asia/Shanghai  # 设置时区为上海，避免日志时间与本地不一致
+    command: [ "sh", "/opt/www/docker-entrypoint-pro.sh" ]  # 启动命令，可自行修改，默认为start
+    networks:
+      - etcdnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "3"
+networks:
+  etcdnet:
+    external: true
