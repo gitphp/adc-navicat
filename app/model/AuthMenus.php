@@ -145,7 +145,7 @@ class AuthMenus extends Model
             ];
             
             // 递归获取子菜单
-            $childOptions = self::getOptionsWithLevel($item->id, $prefix . '├─ ', $excludeId);
+            $childOptions = self::getOptionsWithLevel((int) $item->id, $prefix . '├─ ', $excludeId);
             $options = array_merge($options, $childOptions);
         }
         

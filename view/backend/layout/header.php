@@ -8,8 +8,8 @@
             <i class="layui-icon layui-icon-refresh"></i>
         </a>
         <div class="navbar-links">
-            <a href="/backend/index">8M8</a>
-            <a href="javascript:;">ERP</a>
+            <a href="/backend/index">人事系统</a>
+            <a href="javascript:;">商户系统</a>
         </div>
     </div>
     <div class="navbar-right">

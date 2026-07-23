@@ -820,6 +820,42 @@ a {
     color: var(--accent-hover);
 }
 
+/* ========== 表单弹窗样式 ========== */
+.form-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.form-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.form-group-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-left: 8px;
+    border-left: 3px solid #1890ff;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
 /* ========== 手机端 ========== */
 .site-tree-mobile {
     display: none;
