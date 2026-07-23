@@ -107,6 +107,16 @@ Route::group('backend', function() {
     Route::post('bookmark/update', 'backend.backendbookmark/update');
     Route::post('bookmark/del', 'backend.backendbookmark/del');
     Route::post('bookmark/status', 'backend.backendbookmark/status');
+    
+    // 广告位管理
+    Route::get('adslots', 'backend.backendadslots/index');
+    Route::get('adslots/list', 'backend.backendadslots/list');
+    Route::get('adslots/add', 'backend.backendadslots/add');
+    Route::post('adslots/save', 'backend.backendadslots/save');
+    Route::get('adslots/edit', 'backend.backendadslots/edit');
+    Route::post('adslots/update', 'backend.backendadslots/update');
+    Route::post('adslots/del', 'backend.backendadslots/del');
+    Route::post('adslots/status', 'backend.backendadslots/status');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
