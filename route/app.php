@@ -97,6 +97,16 @@ Route::group('backend', function() {
     Route::post('article/publish', 'backend.backendarticle/publish');
     Route::post('article/offline', 'backend.backendarticle/offline');
     Route::post('article/top', 'backend.backendarticle/top');
+    
+    // 书签管理
+    Route::get('bookmark', 'backend.backendbookmark/index');
+    Route::get('bookmark/list', 'backend.backendbookmark/list');
+    Route::get('bookmark/add', 'backend.backendbookmark/add');
+    Route::post('bookmark/save', 'backend.backendbookmark/save');
+    Route::get('bookmark/edit', 'backend.backendbookmark/edit');
+    Route::post('bookmark/update', 'backend.backendbookmark/update');
+    Route::post('bookmark/del', 'backend.backendbookmark/del');
+    Route::post('bookmark/status', 'backend.backendbookmark/status');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
