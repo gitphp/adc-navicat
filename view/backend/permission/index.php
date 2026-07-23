@@ -300,7 +300,7 @@
             }
             
             // 搜索
-            function search() {
+            window.search = function() {
                 tableIns.reload({
                     where: {
                         per_name: document.getElementById('per_name').value,
@@ -315,12 +315,12 @@
             }
             
             // 重置搜索
-            function resetSearch() {
+            window.resetSearch = function() {
                 document.getElementById('per_name').value = '';
                 document.getElementById('per_code').value = '';
                 document.getElementById('per_type').value = '';
                 document.getElementById('per_status').value = '';
-                search();
+                window.search();
             }
         });
     </script>

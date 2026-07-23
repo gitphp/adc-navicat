@@ -261,7 +261,7 @@
             }
             
             // 搜索
-            function search() {
+            window.search = function() {
                 tableIns.reload({
                     where: {
                         menu_name: document.getElementById('menu_name').value,
@@ -275,11 +275,11 @@
             }
             
             // 重置搜索
-            function resetSearch() {
+            window.resetSearch = function() {
                 document.getElementById('menu_name').value = '';
                 document.getElementById('menu_path').value = '';
                 document.getElementById('menu_status').value = '';
-                search();
+                window.search();
             }
         });
     </script>

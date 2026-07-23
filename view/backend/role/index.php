@@ -266,25 +266,25 @@
         }
         
         // 搜索
-        function search() {
-            tableIns.reload({
-                where: {
-                    role_name: document.getElementById('role_name').value,
-                    role_code: document.getElementById('role_code').value,
-                    role_status: document.getElementById('role_status').value,
-                },
-                page: {
-                    curr: 1
-                }
-            });
-        }
-        
-        // 重置搜索
-        function resetSearch() {
-            document.getElementById('role_name').value = '';
-            document.getElementById('role_code').value = '';
-            document.getElementById('role_status').value = '';
-            search();
-        }
+            window.search = function() {
+                tableIns.reload({
+                    where: {
+                        role_name: document.getElementById('role_name').value,
+                        role_code: document.getElementById('role_code').value,
+                        role_status: document.getElementById('role_status').value,
+                    },
+                    page: {
+                        curr: 1
+                    }
+                });
+            }
+            
+            // 重置搜索
+            window.resetSearch = function() {
+                document.getElementById('role_name').value = '';
+                document.getElementById('role_code').value = '';
+                document.getElementById('role_status').value = '';
+                window.search();
+            }
     });
 </script>

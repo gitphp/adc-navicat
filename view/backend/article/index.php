@@ -627,7 +627,7 @@
             }
             
             // 搜索
-            function search() {
+            window.search = function() {
                 tableIns.reload({
                     where: {
                         title: document.getElementById('title').value,
@@ -642,7 +642,7 @@
             }
             
             // 重置搜索
-            function resetSearch() {
+            window.resetSearch = function() {
                 document.getElementById('title').value = '';
                 document.getElementById('category_id').value = '';
                 document.getElementById('art_status').value = '';

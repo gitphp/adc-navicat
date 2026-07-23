@@ -300,7 +300,7 @@
             }
             
             // 搜索
-            function search() {
+            window.search = function() {
                 tableIns.reload({
                     where: {
                         category_name: document.getElementById('category_name').value,
@@ -310,7 +310,7 @@
             }
             
             // 重置搜索
-            function resetSearch() {
+            window.resetSearch = function() {
                 document.getElementById('category_name').value = '';
                 document.getElementById('cat_status').value = '';
                 tableIns.reload({

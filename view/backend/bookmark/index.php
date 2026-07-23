@@ -248,7 +248,7 @@
         }
         
         // 搜索
-        function search() {
+        window.search = function() {
             tableIns.reload({
                 where: {
                     short_title: document.getElementById('short_title').value,
@@ -263,12 +263,12 @@
         }
         
         // 重置搜索
-        function resetSearch() {
+        window.resetSearch = function() {
             document.getElementById('short_title').value = '';
             document.getElementById('book_title').value = '';
             document.getElementById('category_id').value = '0';
             document.getElementById('status').value = '';
-            search();
+            window.search();
         }
     });
 </script>

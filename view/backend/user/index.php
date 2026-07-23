@@ -267,7 +267,7 @@
             }
             
             // 搜索
-            function search() {
+            window.search = function() {
                 tableIns.reload({
                     where: {
                         user_name: document.getElementById('user_name').value,
@@ -282,12 +282,12 @@
             }
             
             // 重置搜索
-            function resetSearch() {
+            window.resetSearch = function() {
                 document.getElementById('user_name').value = '';
                 document.getElementById('user_nick').value = '';
                 document.getElementById('user_mobile').value = '';
                 document.getElementById('user_status').value = '';
-                search();
+                window.search();
             }
         });
     </script>

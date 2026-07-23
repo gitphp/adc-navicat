@@ -65,6 +65,15 @@ class BackendBase extends BaseController
             'title'     => $this->title,
         ], $data);
         
+        // 判断是否是 AJAX 请求（通过 HTTP_X_REQUESTED_WITH 头）
+        $isAjax = $this->request->header('HTTP_X_REQUESTED_WITH') === 'XMLHttpRequest' || 
+                  $this->request->header('X-Requested-With') === 'XMLHttpRequest';
+        
+        // 如果是 AJAX 请求，只返回子页面内容
+        if ($isAjax) {
+            return view($template, $viewData);
+        }
+        
         // 渲染子页面内容
         ob_start();
         view($template, $viewData)->send();

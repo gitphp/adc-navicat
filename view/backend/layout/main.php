@@ -118,6 +118,10 @@
             background: #1ab394;
             color: #fff;
         }
+        .menu-header.open {
+            background: #1ab394;
+            color: #fff;
+        }
         .menu-header i.layui-icon {
             width: 24px;
             font-size: 16px;
@@ -156,6 +160,10 @@
             background: #2f4050;
             color: #fff;
         }
+        .sub-menu-header.open {
+            background: #2f4050;
+            color: #fff;
+        }
         .sub-menu-title {
             flex: 1;
         }
@@ -178,12 +186,17 @@
             align-items: center;
             padding: 10px 20px;
             color: #8aa4af;
-            text-decoration: none;
+            cursor: pointer;
             font-size: 13px;
             transition: all 0.2s;
             border-left: 3px solid transparent;
         }
         .menu-link:hover {
+            background: #1ab394;
+            color: #fff;
+            border-left-color: #1ab394;
+        }
+        .menu-link.active {
             background: #1ab394;
             color: #fff;
             border-left-color: #1ab394;
@@ -243,6 +256,18 @@
         .layui-card {
             border-radius: 8px;
         }
+        /* 加载动画 */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #999;
+        }
+        .loading i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
         /* 响应式 */
         @media (max-width: 768px) {
             .sidebar {
@@ -265,14 +290,14 @@
     
     <!-- 主内容区域 -->
     <div class="main-container">
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="content-wrapper">
             <!-- 内容区域（由子页面填充） -->
             <?= $content ?>
         </div>
     </div>
     
     <script>
-        // 菜单展开/收起
+        // 菜单展开/收起 - 不合并关闭其他菜单
         function toggleMenu(id) {
             var el = document.getElementById(id);
             var header = el.parentElement.querySelector('.menu-header');
@@ -280,13 +305,6 @@
                 el.classList.remove('open');
                 header.classList.remove('open');
             } else {
-                // 先关闭其他展开的菜单
-                document.querySelectorAll('.menu-children').forEach(function(item) {
-                    item.classList.remove('open');
-                });
-                document.querySelectorAll('.menu-header').forEach(function(item) {
-                    item.classList.remove('open');
-                });
                 el.classList.add('open');
                 header.classList.add('open');
             }
@@ -302,6 +320,93 @@
                 el.classList.add('open');
                 header.classList.add('open');
             }
+        }
+        
+        // 加载内容
+        function loadContent(url, element) {
+            if (!url || url === '#') return;
+            
+            // 更新激活状态
+            document.querySelectorAll('.menu-link').forEach(function(item) {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+            
+            // 显示加载状态
+            var wrapper = document.getElementById('content-wrapper');
+            wrapper.innerHTML = '<div class="loading"><i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate"></i> 加载中...</div>';
+            
+            // 使用 layui.$ 发起 AJAX 请求
+            layui.$.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'html',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function(html) {
+                    wrapper.innerHTML = html;
+                    // 执行加载的 HTML 中的脚本
+                    executeScripts(wrapper);
+                    // 重新渲染 layui 组件
+                    layui.use(['form', 'table', 'layer'], function() {
+                        var form = layui.form;
+                        var table = layui.table;
+                        var layer = layui.layer;
+                        form.render();
+                    });
+                },
+                error: function() {
+                    wrapper.innerHTML = '<div class="loading">加载失败，请刷新页面重试</div>';
+                }
+            });
+        }
+        
+        // 执行 HTML 中的脚本
+        function executeScripts(container) {
+            var scripts = container.querySelectorAll('script');
+            scripts.forEach(function(script) {
+                // 移除原脚本标签
+                script.parentNode.removeChild(script);
+                
+                var newScript = document.createElement('script');
+                newScript.type = 'text/javascript';
+                if (script.src) {
+                    newScript.src = script.src;
+                    newScript.onload = function() {
+                        // 脚本加载完成后初始化
+                        initLayuiComponents(container);
+                    };
+                } else {
+                    // 内联脚本，直接执行
+                    newScript.innerHTML = script.innerHTML;
+                }
+                // 将脚本添加到 container 末尾，确保 DOM 元素已就绪
+                container.appendChild(newScript);
+            });
+            // 如果没有外部脚本，直接初始化
+            initLayuiComponents(container);
+        }
+        
+        // 初始化 layui 组件
+        function initLayuiComponents(container) {
+            layui.use(['form', 'table', 'layer'], function() {
+                var form = layui.form;
+                var table = layui.table;
+                var layer = layui.layer;
+                
+                // 重新渲染表单
+                form.render();
+                
+                // 重新渲染表格 - 通过查找 table.render 调用来初始化
+                // 由于脚本已经执行，table.render 应该已经被调用了
+                // 这里主要处理 form 和其他需要重新渲染的组件
+                
+                // 确保 layer 可用
+                window.layer = layer;
+                window.form = form;
+                window.table = table;
+            });
         }
         
         // 退出登录
