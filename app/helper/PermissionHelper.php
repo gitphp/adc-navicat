@@ -142,8 +142,48 @@ class PermissionHelper
             ->select()
             ->toArray();
         
+        // 如果是超级管理员，返回所有菜单
+        if (self::isSuperAdmin($user)) {
+            return self::buildMenuTree($menus, array_column($menus, 'id'));
+        }
+        
+        // 级联获取父级菜单ID（用户有权访问子菜单时，自动获得父级菜单访问权限）
+        $allowedMenuIds = self::getAllowedMenuIds($menus, $menuIds);
+        
         // 构建树形结构
-        return self::buildMenuTree($menus, $menuIds);
+        return self::buildMenuTree($menus, $allowedMenuIds);
+    }
+    
+    /**
+     * 级联获取允许访问的菜单ID（包含父级菜单）
+     * @param array $menus 所有菜单列表
+     * @param array $userMenuIds 用户直接关联的菜单ID
+     * @return array
+     */
+    public static function getAllowedMenuIds(array $menus, array $userMenuIds): array
+    {
+        $allowedIds = $userMenuIds;
+        $menuMap = [];
+        
+        // 构建菜单ID到父级ID的映射
+        foreach ($menus as $menu) {
+            $menuMap[(string)$menu['id']] = (string)$menu['parent_id'];
+        }
+        
+        // 级联获取父级菜单ID
+        $changed = true;
+        while ($changed) {
+            $changed = false;
+            foreach ($allowedIds as $menuId) {
+                $parentId = $menuMap[(string)$menuId] ?? null;
+                if ($parentId && $parentId !== '0' && !in_array($parentId, $allowedIds)) {
+                    $allowedIds[] = $parentId;
+                    $changed = true;
+                }
+            }
+        }
+        
+        return $allowedIds;
     }
     
     /**
@@ -153,7 +193,7 @@ class PermissionHelper
      * @param int $parentId 父级ID
      * @return array
      */
-    public static function buildMenuTree(array $menus, array $allowedMenuIds, int $parentId = 0): array
+    public static function buildMenuTree(array $menus, array $allowedMenuIds, string $parentId = '0'): array
     {
         $tree = [];
         

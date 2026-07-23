@@ -20,7 +20,7 @@
                                     </div>
                                     <div class="sub-menu-children" id="sub-menu-<?= $child['id'] ?>">
                                         <?php foreach ($child['children'] as $grandchild): ?>
-                                            <a href="<?= $grandchild['menu_url'] ?: '#' ?>" class="menu-link">
+                                            <a href="<?= $grandchild['menu_path'] ?: '#' ?>" class="menu-link">
                                                 <span class="menu-text"><?= htmlspecialchars($grandchild['menu_name']) ?></span>
                                             </a>
                                         <?php endforeach; ?>
@@ -28,7 +28,7 @@
                                 </div>
                             <?php else: ?>
                                 <!-- 二级菜单 -->
-                                <a href="<?= $child['menu_url'] ?: '#' ?>" class="menu-link">
+                                <a href="<?= $child['menu_path'] ?: '#' ?>" class="menu-link">
                                     <i class="layui-icon <?= $child['menu_icon'] ?: 'layui-icon-circle' ?>"></i>
                                     <span class="menu-text"><?= htmlspecialchars($child['menu_name']) ?></span>
                                 </a>
@@ -38,7 +38,7 @@
                 </div>
             <?php else: ?>
                 <!-- 无子菜单的菜单项 -->
-                <a href="<?= $menu['menu_url'] ?: '#' ?>" class="menu-link single">
+                <a href="<?= $menu['menu_path'] ?: '#' ?>" class="menu-link single">
                     <i class="layui-icon <?= $menu['menu_icon'] ?: 'layui-icon-app' ?>"></i>
                     <span class="menu-text"><?= htmlspecialchars($menu['menu_name']) ?></span>
                 </a>
