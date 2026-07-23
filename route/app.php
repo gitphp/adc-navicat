@@ -82,6 +82,20 @@ Route::group('backend', function() {
     Route::post('category/update', 'backend.backendcategory/update');
     Route::post('category/del', 'backend.backendcategory/del');
     Route::post('category/status', 'backend.backendcategory/status');
+    
+    // 文章管理
+    Route::get('article', 'backend.backendarticle/index');
+    Route::get('article/list', 'backend.backendarticle/list');
+    Route::get('article/stats', 'backend.backendarticle/stats');
+    Route::get('article/add', 'backend.backendarticle/add');
+    Route::post('article/save', 'backend.backendarticle/save');
+    Route::get('article/edit', 'backend.backendarticle/edit');
+    Route::post('article/update', 'backend.backendarticle/update');
+    Route::post('article/del', 'backend.backendarticle/del');
+    Route::post('article/review', 'backend.backendarticle/review');
+    Route::post('article/publish', 'backend.backendarticle/publish');
+    Route::post('article/offline', 'backend.backendarticle/offline');
+    Route::post('article/top', 'backend.backendarticle/top');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
