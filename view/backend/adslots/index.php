@@ -93,13 +93,13 @@
                 {field: 'id', title: 'ID', width: 80, sort: true},
                 {field: 'slot_code', title: '广告位编码', width: 180},
                 {field: 'slot_name', title: '广告位名称', width: 200},
-                {field: 'description', title: '描述', width: 200},
+                {field: 'description', title: '描述', minWidth: 160},
                 {field: 'size_text', title: '尺寸(像素)', width: 120, templet: '#sizeTpl'},
                 {field: 'max_items', title: '最大数量', width: 100},
                 {field: 'is_system_text', title: '类型', width: 100, templet: '#systemTpl'},
                 {field: 'slot_status_text', title: '状态', width: 80, templet: '#statusTpl'},
                 {field: 'created_at', title: '创建时间', width: 160},
-                {title: '操作', width: 200, toolbar: '#barTpl'},
+                {title: '操作', width: 200, templet: '#barTpl', fixed: 'right'},
             ]],
         });
     });

@@ -121,9 +121,9 @@
                 {field: 'show_type_text', title: '可见性', width: 120, templet: '#showTypeTpl'},
                 {field: 'cat_status_text', title: '状态', width: 80, templet: '#statusTpl'},
                 {field: 'sort_order', title: '排序', width: 80},
-                {field: 'description', title: '描述', width: 200},
+                {field: 'description', title: '描述', minWidth: 140},
                 {field: 'created_at', title: '创建时间', width: 170},
-                {title: '操作', width: 200, templet: '#toolbar'},
+                {title: '操作', width: 280, templet: '#toolbar', fixed: 'right'},
             ]],
         });
         

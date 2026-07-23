@@ -141,13 +141,13 @@
                 {type: 'numbers', title: '序号', width: 80},
                 {field: 'short_title', title: '短标题', width: 100},
                 {field: 'book_title', title: '长标题', width: 200},
-                {field: 'book_url', title: '链接地址', width: 300},
+                {field: 'book_url', title: '链接地址', minWidth: 200},
                 {field: 'category_name', title: '所属分类', width: 120},
                 {field: 'status_text', title: '状态', width: 80, templet: '#statusTpl'},
                 {field: 'is_bold_text', title: '加粗显示', width: 80, templet: '#boldTpl'},
                 {field: 'sort_order', title: '排序', width: 80},
                 {field: 'created_at', title: '创建时间', width: 170},
-                {title: '操作', width: 200, templet: '#toolbar', align: 'center'},
+                {title: '操作', width: 200, templet: '#toolbar', align: 'center', fixed: 'right'},
             ]],
         });
         

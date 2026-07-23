@@ -81,11 +81,11 @@
                 {field: 'link_name', title: '网站名称', width: 150},
                 {field: 'link_logo', title: 'Logo', width: 80, templet: '#logoTpl'},
                 {field: 'link_url', title: '网站链接', width: 250},
-                {field: 'link_desc', title: '网站描述', width: 200},
+                {field: 'link_desc', title: '网站描述', minWidth: 160},
                 {field: 'link_sort', title: '排序', width: 80},
                 {field: 'link_status_text', title: '状态', width: 80, templet: '#statusTpl'},
                 {field: 'created_at', title: '创建时间', width: 160},
-                {title: '操作', width: 220, toolbar: '#barTpl'},
+                {title: '操作', width: 220, templet: '#barTpl', fixed: 'right'},
             ]],
         });
     });

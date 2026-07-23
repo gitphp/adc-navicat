@@ -63,13 +63,13 @@
                 {field: 'menu_name', title: '菜单名称', width: 150},
                 {field: 'parent_name', title: '父级菜单', width: 120},
                 {field: 'menu_path', title: '路由路径', width: 200},
-                {field: 'component', title: '组件路径', width: 200},
+                {field: 'component', title: '组件路径', minWidth: 140},
                 {field: 'menu_icon', title: '图标', width: 120},
                 {field: 'permission_code', title: '权限标识', width: 150},
                 {field: 'menu_sort', title: '排序', width: 80},
                 {field: 'menu_status_text', title: '状态', width: 100, templet: '#statusTpl'},
                 {field: 'created_at', title: '创建时间', width: 170},
-                {title: '操作', width: 200, templet: '#toolbar'},
+                {title: '操作', width: 200, templet: '#toolbar', fixed: 'right'},
             ]],
         });
         

@@ -64,11 +64,11 @@
                 {field: 'fb_phone', title: '联系电话', width: 120},
                 {field: 'fb_email', title: '邮箱', width: 180},
                 {field: 'fb_company', title: '公司名称', width: 120},
-                {field: 'fb_title', title: '留言标题', width: 200},
+                {field: 'fb_title', title: '留言标题', minWidth: 160},
                 {field: 'fb_status_text', title: '状态', width: 80, templet: '#statusTpl'},
                 {field: 'ip', title: 'IP地址', width: 130},
                 {field: 'created_at', title: '留言时间', width: 160},
-                {title: '操作', width: 250, toolbar: '#barTpl'},
+                {title: '操作', width: 250, templet: '#barTpl', fixed: 'right'},
             ]],
         });
     });

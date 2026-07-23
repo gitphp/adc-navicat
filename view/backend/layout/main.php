@@ -81,7 +81,7 @@
         }
     }
 
-    // 标签页内容缓存 { url: { html: 内容, rendered: 是否已渲染 } }
+    // 标签页内容缓存：只存服务端原始 HTML
     var tabContentCache = {};
     var activeTabUrl = '';
 
@@ -106,28 +106,13 @@
 
     function switchTab(tabElement) {
         var url = tabElement.getAttribute('data-url');
-        
-        // 如果点击的是当前已激活的tab，不做任何操作
-        if (activeTabUrl === url) {
-            return;
-        }
-        
-        // 保存当前激活tab的内容到缓存
-        if (activeTabUrl && tabContentCache[activeTabUrl]) {
-            var wrapper = document.getElementById('content-wrapper');
-            tabContentCache[activeTabUrl].html = wrapper.innerHTML;
-        }
-        
-        // 更新tab激活状态
+        if (activeTabUrl === url) return;
+
         document.querySelectorAll('#tabsNav .tab-item').forEach(function(t) {
             t.classList.remove('active');
         });
         tabElement.classList.add('active');
-        
-        // 更新当前激活URL
         activeTabUrl = url;
-        
-        // 加载内容
         loadContentByUrl(url);
     }
 
@@ -184,19 +169,13 @@
 
         var wrapper = document.getElementById('content-wrapper');
         
-        // 检查缓存
+        // 命中缓存：还原原始 HTML 并重新执行（保留 text/html 模板）
         if (tabContentCache[url]) {
-            // 直接恢复缓存的HTML，不再执行脚本（避免重复请求接口）
-            wrapper.innerHTML = tabContentCache[url].html;
-            // 只渲染表单，不执行表格渲染脚本
-            layui.use(['form', 'layer'], function() {
-                var form = layui.form;
-                form.render();
-            });
+            wrapper.innerHTML = tabContentCache[url];
+            executeScripts(wrapper);
             return;
         }
 
-        // 首次加载
         wrapper.innerHTML = '<div class="loading"><i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate"></i> 加载中...</div>';
 
         layui.$.ajax({
@@ -205,8 +184,7 @@
             dataType: 'html',
             headers: { 'X-Requested-With': 'XMLHttpRequest' },
             success: function(html) {
-                // 缓存内容，标记为已渲染
-                tabContentCache[url] = { html: html, rendered: true };
+                tabContentCache[url] = html;
                 wrapper.innerHTML = html;
                 executeScripts(wrapper);
             },
@@ -226,19 +204,22 @@
         addTab(url, title);
     }
 
+    // 仅执行 JS；保留 type="text/html" 的 laytpl 模板，否则操作列/状态列会空白
     function executeScripts(container) {
-        var scripts = container.querySelectorAll('script');
+        var scripts = Array.prototype.slice.call(container.querySelectorAll('script'));
         scripts.forEach(function(script) {
-            script.parentNode.removeChild(script);
+            var type = (script.getAttribute('type') || 'text/javascript').toLowerCase();
+            if (type === 'text/html') {
+                return;
+            }
             var newScript = document.createElement('script');
-            newScript.type = 'text/javascript';
             if (script.src) {
                 newScript.src = script.src;
                 newScript.onload = function() { initLayuiComponents(); };
             } else {
-                newScript.innerHTML = script.innerHTML;
+                newScript.text = script.text || script.textContent || '';
             }
-            container.appendChild(newScript);
+            script.parentNode.replaceChild(newScript, script);
         });
         initLayuiComponents();
     }
@@ -309,7 +290,8 @@
             '<i class="layui-icon layui-icon-close tab-close" onclick="event.stopPropagation();closeTab(this)"></i>';
         tabsNav.appendChild(tab);
         syncMenuActive(path);
-        tabContentCache[path] = { html: document.getElementById('content-wrapper').innerHTML, rendered: true };
+        activeTabUrl = path;
+        // 首屏内容已由浏览器渲染，不写入缓存；离开后再进入时走 AJAX 拉取
     })();
 </script>
 </body>

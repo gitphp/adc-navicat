@@ -112,11 +112,11 @@
                 {field: 'operator_name', title: '操作人', width: 120},
                 {field: 'biz_type_text', title: '业务模块', width: 120},
                 {field: 'action_text', title: '操作类型', width: 100},
-                {field: 'biz_label', title: '操作对象', width: 150},
+                {field: 'biz_label', title: '操作对象', minWidth: 150},
                 {field: 'operator_status_text', title: '操作状态', width: 80, templet: '#statusTpl'},
                 {field: 'client_ip', title: 'IP地址', width: 130},
                 {field: 'created_at', title: '操作时间', width: 160},
-                {title: '操作', width: 80, toolbar: '#barTpl'},
+                {title: '操作', width: 90, templet: '#barTpl', fixed: 'right'},
             ]],
         });
         

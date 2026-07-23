@@ -92,7 +92,7 @@ layui.use(['table', 'form', 'layer'], function() {
         where: {},
         cols: [[
             {field: 'id', width: 80, title: 'ID', sort: true},
-            {field: 'job_title', width: 150, title: '职位名称'},
+            {field: 'job_title', minWidth: 140, title: '职位名称'},
             {field: 'department', width: 120, title: '所属部门'},
             {field: 'workplace', width: 120, title: '工作地点'},
             {field: 'experience', width: 80, title: '经验要求'},

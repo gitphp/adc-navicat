@@ -710,8 +710,20 @@ a {
     border: 1px solid var(--border);
     border-radius: 0;
     margin: 0;
-    width: 100%;
-    overflow-x: auto;
+    width: 100% !important;
+}
+
+.layui-table-box,
+.layui-table-header,
+.layui-table-body,
+.layui-table-main {
+    width: 100% !important;
+}
+
+.layui-table-header table,
+.layui-table-body table,
+.layui-table-main table {
+    width: 100% !important;
 }
 
 .layui-table {

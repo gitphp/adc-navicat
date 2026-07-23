@@ -91,7 +91,7 @@
             where: {},
             cols: [[
                 {field: 'id', title: 'ID', width: 80, sort: true},
-                {field: 'ad_title', title: '广告标题', width: 200},
+                {field: 'ad_title', title: '广告标题', minWidth: 160},
                 {field: 'position_code', title: '广告位编码', width: 150},
                 {field: 'platform_text', title: '投放平台', width: 100},
                 {field: 'cost_type_text', title: '计费方式', width: 80},
@@ -102,7 +102,7 @@
                 {field: 'click_count', title: '点击量', width: 100},
                 {field: 'click_rate', title: '点击率', width: 100},
                 {field: 'status_text', title: '状态', width: 100, templet: '#statusTpl'},
-                {title: '操作', width: 350, toolbar: '#barTpl'},
+                {title: '操作', width: 350, templet: '#barTpl', fixed: 'right'},
             ]],
         });
     });

@@ -580,7 +580,7 @@
                 {field: 'ip', width: 120, title: 'IP'},
                 {field: 'module', width: 100, title: '模块'},
                 {field: 'action', width: 100, title: '操作'},
-                {field: 'content', width: 300, title: '日志内容'},
+                {field: 'content', minWidth: 200, title: '日志内容'},
             ]],
             parseData: function(res) {
                 return {

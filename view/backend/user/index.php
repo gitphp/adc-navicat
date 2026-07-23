@@ -72,10 +72,10 @@
                 {field: 'user_email', title: '邮箱', width: 150},
                 {field: 'user_status_text', title: '状态', width: 100, templet: '#statusTpl'},
                 {field: 'real_auth_text', title: '实名状态', width: 100, templet: '#authTpl'},
-                {field: 'role_names', title: '角色', width: 200},
+                {field: 'role_names', title: '角色', minWidth: 140},
                 {field: 'register_time', title: '注册时间', width: 170},
                 {field: 'last_login_time', title: '最后登录', width: 170},
-                {title: '操作', width: 200, templet: '#toolbar'},
+                {title: '操作', width: 200, templet: '#toolbar', fixed: 'right'},
             ]],
         });
         

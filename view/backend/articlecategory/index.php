@@ -53,7 +53,7 @@
             where: {},
             cols: [[
                 {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'cat_name_display', width: 280, title: '分类名称'},
+                {field: 'cat_name_display', minWidth: 200, title: '分类名称'},
                 {field: 'cat_url', width: 150, title: 'URL别名'},
                 {field: 'level_text', width: 100, title: '级别'},
                 {field: 'status_text', width: 80, title: '状态', templet: '#statusTpl'},

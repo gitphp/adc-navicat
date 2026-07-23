@@ -133,9 +133,9 @@
                 {field: 'data_scope_text', title: '数据范围', width: 150},
                 {field: 'role_status_text', title: '状态', width: 100, templet: '#statusTpl'},
                 {field: 'role_sort', title: '排序', width: 80},
-                {field: 'role_remark', title: '备注', width: 200},
+                {field: 'role_remark', title: '备注', minWidth: 140},
                 {field: 'created_at', title: '创建时间', width: 170},
-                {title: '操作', width: 200, templet: '#toolbar'},
+                {title: '操作', width: 200, templet: '#toolbar', fixed: 'right'},
             ]],
         });
         

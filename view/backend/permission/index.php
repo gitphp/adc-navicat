@@ -82,13 +82,13 @@
                 {field: 'per_code', title: '权限标识', width: 180},
                 {field: 'per_type_text', title: '权限类型', width: 100, templet: '#typeTpl'},
                 {field: 'parent_name', title: '父级权限', width: 120},
-                {field: 'per_path', title: '路径', width: 180},
+                {field: 'per_path', title: '路径', minWidth: 140},
                 {field: 'per_method', title: '方法', width: 80},
                 {field: 'per_icon', title: '图标', width: 100},
                 {field: 'per_sort', title: '排序', width: 80},
                 {field: 'per_status_text', title: '状态', width: 100, templet: '#statusTpl'},
                 {field: 'created_at', title: '创建时间', width: 170},
-                {title: '操作', width: 200, templet: '#toolbar'},
+                {title: '操作', width: 200, templet: '#toolbar', fixed: 'right'},
             ]],
         });
         

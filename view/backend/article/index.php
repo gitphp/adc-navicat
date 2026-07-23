@@ -233,7 +233,7 @@
             where: {},
             cols: [[
                 {type: 'numbers', title: '序号', width: 80},
-                {field: 'title', title: '文章标题', width: 250, templet: function(d) {
+                {field: 'title', title: '文章标题', minWidth: 200, templet: function(d) {
                     var html = '<span class="title-link" onclick="previewArticle(' + d.id + ')">' + d.title + '</span>';
                     if (d.subtitle) {
                         html += '<br><span style="font-size: 12px; color: #999;">' + d.subtitle + '</span>';
@@ -249,7 +249,7 @@
                 {field: 'like_count', title: '点赞', width: 70},
                 {field: 'comment_count', title: '评论', width: 70},
                 {field: 'created_at', title: '创建时间', width: 170},
-                {title: '操作', width: 280, templet: '#toolbar'},
+                {title: '操作', width: 280, templet: '#toolbar', fixed: 'right'},
             ]],
         });
         

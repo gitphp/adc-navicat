@@ -46,12 +46,12 @@
                 {field: 'id', title: 'ID', width: 80, sort: true},
                 {field: 'conf_group_text', title: '配置分组', width: 120},
                 {field: 'conf_key', title: '配置键名', width: 200},
-                {field: 'conf_value', title: '配置值', width: 250},
+                {field: 'conf_value', title: '配置值', minWidth: 180},
                 {field: 'conf_desc', title: '配置说明', width: 180},
                 {field: 'input_type_text', title: '输入类型', width: 120},
                 {field: 'conf_sort', title: '排序', width: 80},
                 {field: 'updated_at', title: '更新时间', width: 160},
-                {title: '操作', width: 150, toolbar: '#barTpl'},
+                {title: '操作', width: 150, templet: '#barTpl', fixed: 'right'},
             ]],
         });
     });
