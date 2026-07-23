@@ -141,7 +141,7 @@
             form.render();
             
             // 提交表单
-            function submitForm() {
+            window.submitForm = function() {
                 var permissionIds = [];
                 var checkboxes = document.querySelectorAll('input[name="permission_ids[]"]:checked');
                 checkboxes.forEach(function(checkbox) {
@@ -178,7 +178,7 @@
             }
             
             // 关闭弹窗
-            function closeDialog() {
+            window.closeDialog = function() {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }

@@ -130,7 +130,7 @@
             form.render();
             
             // 提交表单
-            function submitForm() {
+            window.submitForm = function() {
                 var menuName = document.getElementById('menu_name').value.trim();
                 
                 if (!menuName) {
@@ -177,7 +177,7 @@
             }
             
             // 关闭弹窗
-            function closeDialog() {
+            window.closeDialog = function() {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }

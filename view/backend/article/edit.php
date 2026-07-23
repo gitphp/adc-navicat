@@ -284,7 +284,7 @@
             }
             
             // 保存修改
-            function submitForm() {
+            window.submitForm = function() {
                 syncContent();
                 
                 form.verify({
@@ -376,7 +376,7 @@
             }
             
             // 关闭弹窗
-            function closeDialog() {
+            window.closeDialog = function() {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }

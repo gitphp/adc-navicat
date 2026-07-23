@@ -272,8 +272,8 @@
                 submitForm();
             }
             
-            // 提交审核
-            function submitForm() {
+            // 提交表单
+            window.submitForm = function() {
                 document.querySelector('select[name="art_status"]').value = 2;
                 syncContent();
                 
@@ -366,7 +366,7 @@
             }
             
             // 关闭弹窗
-            function closeDialog() {
+            window.closeDialog = function() {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }

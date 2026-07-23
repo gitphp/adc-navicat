@@ -191,7 +191,7 @@
             }
             
             // 提交表单
-            function submitForm() {
+            window.submitForm = function() {
                 var perName = document.getElementById('per_name').value.trim();
                 var perCode = document.getElementById('per_code').value.trim();
                 
@@ -245,7 +245,7 @@
             }
             
             // 关闭弹窗
-            function closeDialog() {
+            window.closeDialog = function() {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }

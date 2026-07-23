@@ -44,7 +44,7 @@
                 <div class="layui-input-block">
                     <select name="parent_id" lay-verify="required">
                         <option value="0">顶级分类</option>
-                        <?php echo $this->renderCategoryOptions($categories, 0, 0, $category->id); ?>
+                        <?php echo renderCategoryOptions($categories, 0, 0, $category->id); ?>
                     </select>
                 </div>
             </div>
@@ -117,7 +117,7 @@
             });
             
             // 提交表单
-            function submitForm() {
+            window.submitForm = function() {
                 form.verify({
                     category_name: function(value) {
                         if (!value) {
@@ -157,7 +157,7 @@
             }
             
             // 关闭弹窗
-            function closeDialog() {
+            window.closeDialog = function() {
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }
