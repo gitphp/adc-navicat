@@ -84,6 +84,18 @@
             </div>
             
             <div class="layui-input-item">
+                <label class="layui-form-label">验证码</label>
+                <div class="layui-input-block" style="padding-left: 0;">
+                    <div class="captcha-row">
+                        <input type="text" name="captcha" id="captcha" required lay-verify="required" 
+                               placeholder="请输入验证码" 
+                               class="layui-input" style="height: 44px; border-radius: 6px; flex: 1;">
+                        <img src="/backend/login/captcha" id="captchaImg" class="captcha-img" alt="验证码" title="点击刷新">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="layui-input-item">
                 <div class="layui-input-block" style="padding-left: 0;">
                     <input type="checkbox" name="remember" id="remember" lay-skin="primary" title="记住我">
                 </div>
@@ -114,6 +126,7 @@
             document.getElementById('loginBtn').addEventListener('click', function() {
                 var account = document.getElementById('account').value.trim();
                 var password = document.getElementById('password').value.trim();
+                var captcha = document.getElementById('captcha').value.trim();
                 
                 if (!account) {
                     layer.msg('请输入账号', {icon: 5});
@@ -122,6 +135,11 @@
                 
                 if (!password) {
                     layer.msg('请输入密码', {icon: 5});
+                    return;
+                }
+                
+                if (!captcha) {
+                    layer.msg('请输入验证码', {icon: 5});
                     return;
                 }
                 
@@ -134,6 +152,7 @@
                     data: {
                         account: account,
                         password: password,
+                        captcha: captcha,
                         remember: remember
                     },
                     dataType: 'json',
@@ -165,6 +184,11 @@
                 if (e.keyCode === 13) {
                     document.getElementById('loginBtn').click();
                 }
+            });
+            
+            // 刷新验证码
+            document.getElementById('captchaImg').addEventListener('click', function() {
+                this.src = '/backend/login/captcha?' + Math.random();
             });
         });
     </script>

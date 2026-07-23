@@ -41,7 +41,6 @@ class LoginValidate extends Validate
      * @var array
      */
     protected $scene = [
-        'login'  => ['account', 'password'],
-        'captcha_login' => ['account', 'password', 'captcha'],
+        'login'  => ['account', 'password', 'captcha'],
     ];
 }
