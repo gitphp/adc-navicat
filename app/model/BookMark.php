@@ -72,4 +72,13 @@ class BookMark extends Model
         $category = $this->category;
         return $category ? $category->category_name : '未知分类';
     }
+
+    /**
+     * 获取加粗状态文本
+     * @return string
+     */
+    public function getIsBoldTextAttribute(): string
+    {
+        return $this->is_bold == 1 ? '是' : '否';
+    }
 }

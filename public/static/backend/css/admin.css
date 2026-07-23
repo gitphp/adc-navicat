@@ -32,7 +32,7 @@ html, body {
 
 body.no-skin {
     font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text);
     background: var(--content-bg);
     overflow: hidden;
@@ -216,7 +216,7 @@ a {
     padding: 9px 14px 9px 42px;
     color: #8b93a7;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .sub-menu-header:hover {
@@ -252,7 +252,7 @@ a {
     padding: 9px 14px 9px 42px;
     color: #8b93a7;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     transition: background 0.15s, color 0.15s;
 }
 
@@ -268,7 +268,7 @@ a {
 
 .menu-link.single {
     padding: 11px 14px;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--sidebar-text);
 }
 
@@ -709,6 +709,20 @@ a {
 .layui-table-view {
     border: 1px solid var(--border);
     border-radius: 0;
+    margin: 0;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.layui-table {
+    width: 100%;
+    table-layout: auto;
+}
+
+.layui-table td, .layui-table th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .layui-form-label {

@@ -147,7 +147,7 @@
                 {field: 'is_bold_text', title: '加粗显示', width: 80, templet: '#boldTpl'},
                 {field: 'sort_order', title: '排序', width: 80},
                 {field: 'created_at', title: '创建时间', width: 170},
-                {title: '操作', width: 150, templet: '#toolbar'},
+                {title: '操作', width: 200, templet: '#toolbar', align: 'center'},
             ]],
         });
         

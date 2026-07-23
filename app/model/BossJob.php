@@ -94,6 +94,33 @@ class BossJob extends Model
     }
     
     /**
+     * 获取状态文本（访问器）
+     * @return string
+     */
+    public function getJobStatusTextAttribute(): string
+    {
+        return self::getStatusText($this->job_status);
+    }
+    
+    /**
+     * 获取状态样式类（访问器）
+     * @return string
+     */
+    public function getJobStatusClassAttribute(): string
+    {
+        return self::getStatusClass($this->job_status);
+    }
+    
+    /**
+     * 获取急聘文本（访问器）
+     * @return string
+     */
+    public function getIsHotTextAttribute(): string
+    {
+        return self::getHotText($this->is_hot);
+    }
+    
+    /**
      * 浏览量+1
      * @param string $id
      * @return bool
