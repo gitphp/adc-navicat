@@ -115,4 +115,77 @@ class User extends Model
         $this->last_login_region = $region;
         return $this->save();
     }
+    
+    /**
+     * 获取用户的角色ID列表
+     * @return array
+     */
+    public function getRoleIds(): array
+    {
+        return \app\model\AuthUserRole::getRoleIds($this->id);
+    }
+    
+    /**
+     * 获取用户的角色列表
+     * @return \think\Collection
+     */
+    public function getRoles()
+    {
+        $roleIds = $this->getRoleIds();
+        if (empty($roleIds)) {
+            return collect([]);
+        }
+        return \app\model\AuthRole::whereIn('id', $roleIds)->where('role_status', 1)->select();
+    }
+    
+    /**
+     * 获取用户的权限标识列表
+     * @return array
+     */
+    public function getPermissionCodes(): array
+    {
+        $roleIds = $this->getRoleIds();
+        if (empty($roleIds)) {
+            return [];
+        }
+        
+        // 获取角色的权限ID
+        $permissionIds = \app\model\AuthRolePermissions::whereIn('role_id', $roleIds)->column('permission_id');
+        if (empty($permissionIds)) {
+            return [];
+        }
+        
+        // 获取权限标识
+        $codes = \app\model\AuthPermissions::whereIn('id', $permissionIds)
+            ->where('per_status', 1)
+            ->column('per_code');
+        
+        return $codes ? $codes : [];
+    }
+    
+    /**
+     * 检查用户是否有指定权限
+     * @param string $code 权限标识
+     * @return bool
+     */
+    public function hasPermission(string $code): bool
+    {
+        $codes = $this->getPermissionCodes();
+        return in_array($code, $codes);
+    }
+    
+    /**
+     * 获取用户的菜单ID列表
+     * @return array
+     */
+    public function getMenuIds(): array
+    {
+        $roleIds = $this->getRoleIds();
+        if (empty($roleIds)) {
+            return [];
+        }
+        
+        $menuIds = \app\model\AuthRoleMenus::whereIn('role_id', $roleIds)->column('menu_id');
+        return $menuIds ? $menuIds : [];
+    }
 }

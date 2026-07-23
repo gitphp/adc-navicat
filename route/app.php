@@ -37,6 +37,18 @@ Route::group('backend', function() {
     Route::post('role/update', 'backend.role/update');
     Route::post('role/del', 'backend.role/del');
     Route::post('role/status', 'backend.role/status');
+    Route::get('role/permission', 'backend.role/permission');
+    Route::post('role/savePermission', 'backend.role/savePermission');
+    Route::get('role/menu', 'backend.role/menu');
+    Route::post('role/saveMenu', 'backend.role/saveMenu');
+    
+    // 用户管理
+    Route::get('user', 'backend.backenduser/index');
+    Route::get('user/list', 'backend.backenduser/list');
+    Route::get('user/edit', 'backend.backenduser/edit');
+    Route::post('user/updateRoles', 'backend.backenduser/updateRoles');
+    Route::post('user/status', 'backend.backenduser/status');
+    Route::post('user/del', 'backend.backenduser/del');
     
     // 权限管理
     Route::get('permission', 'backend.permission/index');

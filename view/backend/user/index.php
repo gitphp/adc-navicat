@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>角色管理</title>
+    <title>用户管理</title>
     <link rel="stylesheet" href="/static/backend/layui/css/layui.css">
     <style>
         body {
@@ -23,23 +23,6 @@
         .header-title {
             font-size: 20px;
             font-weight: 600;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .add-btn {
-            padding: 6px 16px;
-            background: #1E9FFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .add-btn:hover {
-            background: #0080FF;
         }
         .main-content {
             padding: 20px;
@@ -71,7 +54,7 @@
             border-radius: 4px;
             font-size: 12px;
         }
-        .status-enabled {
+        .status-normal {
             background: #f0f9eb;
             color: #67c23a;
         }
@@ -79,45 +62,54 @@
             background: #fef0f0;
             color: #f56c6c;
         }
-        .type-badge {
+        .auth-badge {
             display: inline-block;
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 12px;
         }
-        .type-system {
-            background: #ecf5ff;
-            color: #409eff;
+        .auth-none {
+            background: #f5f5f5;
+            color: #999;
         }
-        .type-custom {
-            background: #f0f0f0;
-            color: #909399;
+        .auth-pending {
+            background: #fdf6ec;
+            color: #e6a23c;
+        }
+        .auth-verified {
+            background: #f0f9eb;
+            color: #67c23a;
+        }
+        .auth-rejected {
+            background: #fef0f0;
+            color: #f56c6c;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <div class="header-title">角色管理</div>
-        <div class="header-right">
-            <button class="add-btn" onclick="addRole()">添加角色</button>
-        </div>
+        <div class="header-title">用户管理</div>
     </div>
     
     <div class="main-content">
         <div class="search-form">
             <div class="search-item">
-                <span class="search-label">角色名称：</span>
-                <input type="text" id="role_name" placeholder="请输入角色名称" class="layui-input" style="width: 200px; display: inline;">
+                <span class="search-label">用户名：</span>
+                <input type="text" id="user_name" placeholder="请输入用户名" class="layui-input" style="width: 200px; display: inline;">
             </div>
             <div class="search-item">
-                <span class="search-label">角色标识：</span>
-                <input type="text" id="role_code" placeholder="请输入角色标识" class="layui-input" style="width: 200px; display: inline;">
+                <span class="search-label">昵称：</span>
+                <input type="text" id="user_nick" placeholder="请输入昵称" class="layui-input" style="width: 200px; display: inline;">
             </div>
             <div class="search-item">
-                <span class="search-label">角色状态：</span>
-                <select id="role_status" class="layui-input" style="width: 150px; display: inline;">
+                <span class="search-label">手机号：</span>
+                <input type="text" id="user_mobile" placeholder="请输入手机号" class="layui-input" style="width: 200px; display: inline;">
+            </div>
+            <div class="search-item">
+                <span class="search-label">状态：</span>
+                <select id="user_status" class="layui-input" style="width: 150px; display: inline;">
                     <option value="">全部</option>
-                    <option value="1">启用</option>
+                    <option value="1">正常</option>
                     <option value="0">禁用</option>
                 </select>
             </div>
@@ -125,37 +117,39 @@
             <button class="layui-btn layui-btn-primary" onclick="resetSearch()">重置</button>
         </div>
         
-        <table id="roleTable" lay-filter="roleTable"></table>
+        <table id="userTable" lay-filter="userTable"></table>
     </div>
     
     <!-- 操作栏模板 -->
     <script type="text/html" id="toolbar">
-        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-xs" lay-event="permission">权限</a>
-        <a class="layui-btn layui-btn-xs" lay-event="menu">菜单</a>
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
-        {{# if(d.role_status == 1){ }}
+        <a class="layui-btn layui-btn-xs" lay-event="edit">分配角色</a>
+        {{# if(d.user_status == 1){ }}
         <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="disable">禁用</a>
         {{# } else { }}
         <a class="layui-btn layui-btn-xs" lay-event="enable">启用</a>
         {{# } }}
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
     </script>
     
     <!-- 状态模板 -->
     <script type="text/html" id="statusTpl">
-        {{# if(d.role_status == 1){ }}
-        <span class="status-badge status-enabled">启用</span>
+        {{# if(d.user_status == 1){ }}
+        <span class="status-badge status-normal">正常</span>
         {{# } else { }}
         <span class="status-badge status-disabled">禁用</span>
         {{# } }}
     </script>
     
-    <!-- 类型模板 -->
-    <script type="text/html" id="typeTpl">
-        {{# if(d.role_type == 1){ }}
-        <span class="type-badge type-system">系统内置</span>
+    <!-- 实名状态模板 -->
+    <script type="text/html" id="authTpl">
+        {{# if(d.real_auth_status == 0){ }}
+        <span class="auth-badge auth-none">未实名</span>
+        {{# } else if(d.real_auth_status == 1){ }}
+        <span class="auth-badge auth-pending">待审核</span>
+        {{# } else if(d.real_auth_status == 2){ }}
+        <span class="auth-badge auth-verified">已实名</span>
         {{# } else { }}
-        <span class="type-badge type-custom">用户自定义</span>
+        <span class="auth-badge auth-rejected">驳回</span>
         {{# } }}
     </script>
 
@@ -168,38 +162,35 @@
             
             // 渲染表格
             var tableIns = table.render({
-                elem: '#roleTable',
-                url: '/backend/role/list',
+                elem: '#userTable',
+                url: '/backend/user/list',
                 page: true,
                 limit: 10,
                 limits: [10, 20, 50],
                 cols: [[
                     {type: 'numbers', title: '序号', width: 80},
-                    {field: 'role_name', title: '角色名称', width: 150},
-                    {field: 'role_code', title: '角色标识', width: 150},
-                    {field: 'role_type_text', title: '角色类型', width: 120, templet: '#typeTpl'},
-                    {field: 'data_scope_text', title: '数据范围', width: 150},
-                    {field: 'role_status_text', title: '状态', width: 100, templet: '#statusTpl'},
-                    {field: 'role_sort', title: '排序', width: 80},
-                    {field: 'role_remark', title: '备注', width: 200},
-                    {field: 'created_at', title: '创建时间', width: 170},
+                    {field: 'user_name', title: '用户名', width: 120},
+                    {field: 'user_nick', title: '昵称', width: 120},
+                    {field: 'user_mobile', title: '手机号', width: 130},
+                    {field: 'user_email', title: '邮箱', width: 150},
+                    {field: 'user_status_text', title: '状态', width: 100, templet: '#statusTpl'},
+                    {field: 'real_auth_text', title: '实名状态', width: 100, templet: '#authTpl'},
+                    {field: 'role_names', title: '角色', width: 200},
+                    {field: 'register_time', title: '注册时间', width: 170},
+                    {field: 'last_login_time', title: '最后登录', width: 170},
                     {title: '操作', width: 200, templet: '#toolbar'},
                 ]],
             });
             
             // 监听行工具事件
-            table.on('tool(roleTable)', function(obj) {
+            table.on('tool(userTable)', function(obj) {
                 var data = obj.data;
                 var layEvent = obj.event;
                 
                 if (layEvent === 'edit') {
-                    editRole(data.id);
-                } else if (layEvent === 'permission') {
-                    configurePermission(data.id);
-                } else if (layEvent === 'menu') {
-                    configureMenu(data.id);
+                    editUser(data.id);
                 } else if (layEvent === 'del') {
-                    deleteRole(data.id, data.role_name);
+                    deleteUser(data.id, data.user_name);
                 } else if (layEvent === 'disable') {
                     changeStatus(data.id, 0);
                 } else if (layEvent === 'enable') {
@@ -207,41 +198,28 @@
                 }
             });
             
-            // 添加角色
-            function addRole() {
+            // 编辑用户（分配角色）
+            function editUser(id) {
                 layer.open({
                     type: 2,
-                    title: '添加角色',
-                    area: ['600px', '500px'],
-                    content: '/backend/role/add',
+                    title: '分配角色',
+                    area: ['500px', '400px'],
+                    content: '/backend/user/edit?id=' + id,
                     end: function() {
                         tableIns.reload();
                     }
                 });
             }
             
-            // 编辑角色
-            function editRole(id) {
-                layer.open({
-                    type: 2,
-                    title: '编辑角色',
-                    area: ['600px', '500px'],
-                    content: '/backend/role/edit?id=' + id,
-                    end: function() {
-                        tableIns.reload();
-                    }
-                });
-            }
-            
-            // 删除角色
-            function deleteRole(id, name) {
-                layer.confirm('确定要删除角色「' + name + '」吗？', {
+            // 删除用户
+            function deleteUser(id, name) {
+                layer.confirm('确定要删除用户「' + name + '」吗？', {
                     icon: 3,
                     title: '提示'
                 }, function(index) {
                     layer.close(index);
                     layui.$.ajax({
-                        url: '/backend/role/del',
+                        url: '/backend/user/del',
                         type: 'POST',
                         data: {id: id},
                         dataType: 'json',
@@ -263,13 +241,13 @@
             // 切换状态
             function changeStatus(id, status) {
                 var statusText = status === 1 ? '启用' : '禁用';
-                layer.confirm('确定要' + statusText + '该角色吗？', {
+                layer.confirm('确定要' + statusText + '该用户吗？', {
                     icon: 3,
                     title: '提示'
                 }, function(index) {
                     layer.close(index);
                     layui.$.ajax({
-                        url: '/backend/role/status',
+                        url: '/backend/user/status',
                         type: 'POST',
                         data: {id: id, status: status},
                         dataType: 'json',
@@ -288,39 +266,14 @@
                 });
             }
             
-            // 配置权限
-            function configurePermission(id) {
-                layer.open({
-                    type: 2,
-                    title: '配置权限',
-                    area: ['700px', '500px'],
-                    content: '/backend/role/permission?id=' + id,
-                    end: function() {
-                        tableIns.reload();
-                    }
-                });
-            }
-            
-            // 配置菜单
-            function configureMenu(id) {
-                layer.open({
-                    type: 2,
-                    title: '配置菜单',
-                    area: ['600px', '500px'],
-                    content: '/backend/role/menu?id=' + id,
-                    end: function() {
-                        tableIns.reload();
-                    }
-                });
-            }
-            
             // 搜索
             function search() {
                 tableIns.reload({
                     where: {
-                        role_name: document.getElementById('role_name').value,
-                        role_code: document.getElementById('role_code').value,
-                        role_status: document.getElementById('role_status').value,
+                        user_name: document.getElementById('user_name').value,
+                        user_nick: document.getElementById('user_nick').value,
+                        user_mobile: document.getElementById('user_mobile').value,
+                        user_status: document.getElementById('user_status').value,
                     },
                     page: {
                         curr: 1
@@ -330,9 +283,10 @@
             
             // 重置搜索
             function resetSearch() {
-                document.getElementById('role_name').value = '';
-                document.getElementById('role_code').value = '';
-                document.getElementById('role_status').value = '';
+                document.getElementById('user_name').value = '';
+                document.getElementById('user_nick').value = '';
+                document.getElementById('user_mobile').value = '';
+                document.getElementById('user_status').value = '';
                 search();
             }
         });

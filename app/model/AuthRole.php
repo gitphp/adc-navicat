@@ -129,4 +129,77 @@ class AuthRole extends Model
         $options = self::getDataScopeOptions();
         return $options[$this->data_scope] ?? '未知';
     }
+    
+    /**
+     * 获取角色的权限ID列表
+     * @return array
+     */
+    public function getPermissionIds(): array
+    {
+        return \app\model\AuthRolePermissions::getPermissionIds($this->id);
+    }
+    
+    /**
+     * 获取角色的权限列表
+     * @return \think\Collection
+     */
+    public function getPermissions()
+    {
+        $permissionIds = $this->getPermissionIds();
+        if (empty($permissionIds)) {
+            return collect([]);
+        }
+        return \app\model\AuthPermissions::whereIn('id', $permissionIds)->where('per_status', 1)->select();
+    }
+    
+    /**
+     * 保存角色权限
+     * @param array $permissionIds 权限ID数组
+     * @return bool
+     */
+    public function savePermissions(array $permissionIds): bool
+    {
+        return \app\model\AuthRolePermissions::savePermissions($this->id, $permissionIds);
+    }
+    
+    /**
+     * 获取角色的菜单ID列表
+     * @return array
+     */
+    public function getMenuIds(): array
+    {
+        return \app\model\AuthRoleMenus::getMenuIds($this->id);
+    }
+    
+    /**
+     * 获取角色的菜单列表
+     * @return \think\Collection
+     */
+    public function getMenus()
+    {
+        $menuIds = $this->getMenuIds();
+        if (empty($menuIds)) {
+            return collect([]);
+        }
+        return \app\model\AuthMenus::whereIn('id', $menuIds)->where('menu_status', 1)->select();
+    }
+    
+    /**
+     * 保存角色菜单
+     * @param array $menuIds 菜单ID数组
+     * @return bool
+     */
+    public function saveMenus(array $menuIds): bool
+    {
+        return \app\model\AuthRoleMenus::saveMenus($this->id, $menuIds);
+    }
+    
+    /**
+     * 获取角色的用户数量
+     * @return int
+     */
+    public function getUserCount(): int
+    {
+        return \app\model\AuthUserRole::where('role_id', $this->id)->count();
+    }
 }

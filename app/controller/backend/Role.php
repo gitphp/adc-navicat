@@ -316,4 +316,177 @@ class Role extends BaseController
             'data' => null,
         ]);
     }
+    
+    /**
+     * 角色权限配置页面
+     * @param int $id 角色ID
+     * @return \think\Response
+     */
+    public function permission($id)
+    {
+        $role = AuthRole::find($id);
+        
+        if (!$role) {
+            return json([
+                'code' => 0,
+                'msg'  => '角色不存在',
+                'data' => null,
+            ]);
+        }
+        
+        // 获取角色已分配的权限ID
+        $permissionIds = $role->getPermissionIds();
+        
+        // 获取所有启用的权限
+        $permissions = \app\model\AuthPermissions::where('per_status', 1)
+            ->order('per_sort', 'desc')
+            ->order('id', 'asc')
+            ->select();
+        
+        return view('role/permission', [
+            'role'           => $role,
+            'permissions'    => $permissions,
+            'permission_ids' => $permissionIds,
+        ]);
+    }
+    
+    /**
+     * 保存角色权限
+     * @return \think\response\Json
+     */
+    public function savePermission()
+    {
+        $roleId = $this->request->post('role_id', 0);
+        $permissionIds = $this->request->post('permission_ids', []);
+        
+        if (!$roleId) {
+            return json([
+                'code' => 0,
+                'msg'  => '缺少角色ID',
+                'data' => null,
+            ]);
+        }
+        
+        $role = AuthRole::find($roleId);
+        
+        if (!$role) {
+            return json([
+                'code' => 0,
+                'msg'  => '角色不存在',
+                'data' => null,
+            ]);
+        }
+        
+        // 转换为数组
+        if (!is_array($permissionIds)) {
+            $permissionIds = explode(',', $permissionIds);
+        }
+        
+        // 过滤无效ID
+        $permissionIds = array_filter($permissionIds, function($id) {
+            return is_numeric($id) && $id > 0;
+        });
+        
+        // 更新角色权限
+        $result = $role->savePermissions($permissionIds);
+        
+        if ($result) {
+            return json([
+                'code' => 1,
+                'msg'  => '权限配置成功',
+                'data' => null,
+            ]);
+        } else {
+            return json([
+                'code' => 0,
+                'msg'  => '权限配置失败',
+                'data' => null,
+            ]);
+        }
+    }
+    
+    /**
+     * 角色菜单配置页面
+     * @param int $id 角色ID
+     * @return \think\Response
+     */
+    public function menu($id)
+    {
+        $role = AuthRole::find($id);
+        
+        if (!$role) {
+            return json([
+                'code' => 0,
+                'msg'  => '角色不存在',
+                'data' => null,
+            ]);
+        }
+        
+        // 获取角色已分配的菜单ID
+        $menuIds = $role->getMenuIds();
+        
+        // 获取所有启用的菜单（树形结构）
+        $menus = \app\model\AuthMenus::getTree();
+        
+        return view('role/menu', [
+            'role'      => $role,
+            'menus'     => $menus,
+            'menu_ids'  => $menuIds,
+        ]);
+    }
+    
+    /**
+     * 保存角色菜单
+     * @return \think\response\Json
+     */
+    public function saveMenu()
+    {
+        $roleId = $this->request->post('role_id', 0);
+        $menuIds = $this->request->post('menu_ids', []);
+        
+        if (!$roleId) {
+            return json([
+                'code' => 0,
+                'msg'  => '缺少角色ID',
+                'data' => null,
+            ]);
+        }
+        
+        $role = AuthRole::find($roleId);
+        
+        if (!$role) {
+            return json([
+                'code' => 0,
+                'msg'  => '角色不存在',
+                'data' => null,
+            ]);
+        }
+        
+        // 转换为数组
+        if (!is_array($menuIds)) {
+            $menuIds = explode(',', $menuIds);
+        }
+        
+        // 过滤无效ID
+        $menuIds = array_filter($menuIds, function($id) {
+            return is_numeric($id) && $id > 0;
+        });
+        
+        // 更新角色菜单
+        $result = $role->saveMenus($menuIds);
+        
+        if ($result) {
+            return json([
+                'code' => 1,
+                'msg'  => '菜单配置成功',
+                'data' => null,
+            ]);
+        } else {
+            return json([
+                'code' => 0,
+                'msg'  => '菜单配置失败',
+                'data' => null,
+            ]);
+        }
+    }
 }
