@@ -1,77 +1,100 @@
-![](https://www.thinkphp.cn/uploads/images/20230630/300c856765af4d8ae758c503185f8739.png)
 
-ThinkPHP 8
-===============
+角色管理功能已创建完成！以下是生成的文件和功能说明：
 
-## 特性
+## 创建的文件
 
-* 基于PHP`8.0+`重构
-* 升级`PSR`依赖
-* 依赖`think-orm`3.0+版本
-* 全新的`think-dumper`服务，支持远程调试
-* 支持`6.0`/`6.1`无缝升级
+### 1. 角色模型 [app/model/AuthRole.php](file:///d:/project/adc-navicat/app/model/AuthRole.php)
+- 对应数据库表 `auth_role`
+- 使用软删除（`deleted_at` 字段）
+- JSON字段 `scope_departments` 自动转换
+- 包含状态、类型、数据范围的常量定义和文本转换方法
 
-> ThinkPHP8的运行环境要求PHP8.0+
+### 2. 角色验证器 [app/validate/RoleValidate.php](file:///d:/project/adc-navicat/app/validate/RoleValidate.php)
+- 验证角色名称、标识、类型、数据范围等字段
+- 支持添加和编辑两种场景
 
-现在开始，你可以使用官方提供的[ThinkChat](https://chat.topthink.com/)，让你在学习ThinkPHP的旅途中享受私人AI助理服务！
+### 3. 角色控制器 [app/controller/backend/Role.php](file:///d:/project/adc-navicat/app/controller/backend/Role.php)
+| 方法 | 路由 | 功能 |
+|------|------|------|
+| `index` | GET `/backend/role` | 角色列表页面 |
+| `list` | GET `/backend/role/list` | AJAX获取角色列表（分页/搜索） |
+| `add` | GET `/backend/role/add` | 添加角色页面 |
+| `save` | POST `/backend/role/save` | 保存角色 |
+| `edit` | GET `/backend/role/edit` | 编辑角色页面 |
+| `update` | POST `/backend/role/update` | 更新角色 |
+| `del` | POST `/backend/role/del` | 删除角色（系统内置角色禁止删除） |
+| `status` | POST `/backend/role/status` | 切换角色状态 |
 
-![](https://www.topthink.com/uploads/assistant/20230630/4d1a3f0ad2958b49bb8189b7ef824cb0.png)
+### 4. 视图文件
+- [view/backend/role/index.php](file:///d:/project/adc-navicat/view/backend/role/index.php) - 角色列表页（带搜索、分页、操作）
+- [view/backend/role/add.php](file:///d:/project/adc-navicat/view/backend/role/add.php) - 添加角色表单
+- [view/backend/role/edit.php](file:///d:/project/adc-navicat/view/backend/role/edit.php) - 编辑角色表单（系统内置角色部分字段只读）
 
-ThinkPHP生态服务由[顶想云](https://www.topthink.com)（TOPThink Cloud）提供，为生态提供专业的开发者服务和价值之选。
+### 5. 路由配置
+已在 [route/app.php](file:///d:/project/adc-navicat/route/app.php) 中注册角色管理路由，均需登录认证。
 
-## 文档
+## 功能特点
 
-[完全开发手册](https://doc.thinkphp.cn)
+1. **数据权限范围**：支持5种数据权限范围（全部数据、本部门及下级、本部门、仅本人数据、自定义指定部门）
+2. **角色类型保护**：系统内置角色（`role_type=1`）禁止删除，标识和类型不可修改
+3. **角色标识唯一性**：添加和编辑时检查 `role_code` 是否已存在
+4. **搜索过滤**：支持按角色名称、标识、状态搜索
+5. **状态切换**：支持启用/禁用操作
+
+## 访问地址
+- 角色管理：`http://your-domain.com/backend/role`
+
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+          
+权限管理功能已创建完成！以下是生成的文件和功能说明：
+
+## 创建的文件
+
+### 1. 权限模型 [app/model/AuthPermissions.php](file:///d:/project/adc-navicat/app/model/AuthPermissions.php)
+- 对应数据库表 `auth_permissions`
+- 使用软删除（`deleted_at` 字段）
+- 支持三种权限类型：菜单(menu)、按钮(button)、接口(api)
+- 提供树形结构获取方法 `getTree()`
+
+### 2. 权限验证器 [app/validate/PermissionValidate.php](file:///d:/project/adc-navicat/app/validate/PermissionValidate.php)
+- 验证权限名称、标识、类型、路径、HTTP方法等字段
+- 支持添加和编辑两种场景
+
+### 3. 权限控制器 [app/controller/backend/Permission.php](file:///d:/project/adc-navicat/app/controller/backend/Permission.php)
+| 方法 | 路由 | 功能 |
+|------|------|------|
+| `index` | GET `/backend/permission` | 权限列表页面 |
+| `list` | GET `/backend/permission/list` | AJAX获取权限列表（分页/搜索） |
+| `tree` | GET `/backend/permission/tree` | 获取树形权限数据 |
+| `add` | GET `/backend/permission/add` | 添加权限页面 |
+| `save` | POST `/backend/permission/save` | 保存权限 |
+| `edit` | GET `/backend/permission/edit` | 编辑权限页面 |
+| `update` | POST `/backend/permission/update` | 更新权限 |
+| `del` | POST `/backend/permission/del` | 删除权限（有子权限禁止删除） |
+| `status` | POST `/backend/permission/status` | 切换权限状态 |
+
+### 4. 视图文件
+- [view/backend/permission/index.php](file:///d:/project/adc-navicat/view/backend/permission/index.php) - 权限列表页（带搜索、分页、操作）
+- [view/backend/permission/add.php](file:///d:/project/adc-navicat/view/backend/permission/add.php) - 添加权限表单
+- [view/backend/permission/edit.php](file:///d:/project/adc-navicat/view/backend/permission/edit.php) - 编辑权限表单
+
+### 5. 路由配置
+已在 [route/app.php](file:///d:/project/adc-navicat/route/app.php) 中注册权限管理路由，均需登录认证。
+
+## 功能特点
+
+1. **权限类型**：支持菜单(menu)、按钮(button)、接口(api)三种类型
+2. **树形结构**：支持父子级关系，父级权限仅显示菜单类型
+3. **HTTP方法**：接口类型权限支持 GET/POST/PUT/DELETE 方法选择
+4. **菜单图标**：仅菜单类型显示图标字段
+5. **权限标识唯一性**：添加和编辑时检查 `per_code` 是否已存在
+6. **子权限保护**：存在子权限时禁止删除父权限
+7. **搜索过滤**：支持按权限名称、标识、类型、状态搜索
+
+## 访问地址
+- 权限管理：`http://your-domain.com/backend/permission`
 
 
-## 赞助
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-全新的[赞助计划](https://www.thinkphp.cn/sponsor)可以让你通过我们的网站、手册、欢迎页及GIT仓库获得巨大曝光，同时提升企业的品牌声誉，也更好保障ThinkPHP的可持续发展。
-
-[![](https://www.thinkphp.cn/sponsor/special.svg)](https://www.thinkphp.cn/sponsor/special)
-
-[![](https://www.thinkphp.cn/sponsor.svg)](https://www.thinkphp.cn/sponsor)
-
-## 安装
-
-~~~
-composer create-project topthink/think tp
-~~~
-
-启动服务
-
-~~~
-cd tp
-php think run
-~~~
-
-然后就可以在浏览器中访问
-
-~~~
-http://localhost:8000
-~~~
-
-如果需要更新框架使用
-~~~
-composer update topthink/framework
-~~~
-
-## 命名规范
-
-`ThinkPHP`遵循PSR-2命名规范和PSR-4自动加载规范。
-
-## 参与开发
-
-直接提交PR或者Issue即可
-
-## 版权信息
-
-ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
-
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
-
-版权所有Copyright © 2006-2024 by ThinkPHP (http://thinkphp.cn) All rights reserved。
-
-ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
-
-更多细节参阅 [LICENSE.txt](LICENSE.txt)

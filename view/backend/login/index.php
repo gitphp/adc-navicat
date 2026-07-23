@@ -100,7 +100,7 @@
         </form>
         
         <div class="login-footer">
-            © 2024 系统管理后台
+            © 2026 名杨系统管理后台
         </div>
     </div>
     
