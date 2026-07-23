@@ -71,6 +71,17 @@ Route::group('backend', function() {
     Route::post('menu/update', 'backend.menu/update');
     Route::post('menu/del', 'backend.menu/del');
     Route::post('menu/status', 'backend.menu/status');
+    
+    // 分类管理
+    Route::get('category', 'backend.backendcategory/index');
+    Route::get('category/list', 'backend.backendcategory/list');
+    Route::get('category/tree', 'backend.backendcategory/tree');
+    Route::get('category/add', 'backend.backendcategory/add');
+    Route::post('category/save', 'backend.backendcategory/save');
+    Route::get('category/edit', 'backend.backendcategory/edit');
+    Route::post('category/update', 'backend.backendcategory/update');
+    Route::post('category/del', 'backend.backendcategory/del');
+    Route::post('category/status', 'backend.backendcategory/status');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
