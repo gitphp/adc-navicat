@@ -3,7 +3,6 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
-use app\BaseController;
 use app\model\User;
 use app\model\AuthRole;
 use app\model\AuthUserRole;
@@ -11,7 +10,7 @@ use app\model\AuthUserRole;
 /**
  * 后台用户管理控制器
  */
-class BackendUser extends BaseController
+class BackendUser extends BackendBase
 {
     /**
      * 用户列表页面
@@ -19,7 +18,8 @@ class BackendUser extends BaseController
      */
     public function index()
     {
-        return view('user/index');
+        $this->title = '用户管理';
+        return $this->render('user/index');
     }
 
     /**

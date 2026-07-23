@@ -3,14 +3,13 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
-use app\BaseController;
 use app\model\AuthRole;
 use app\validate\RoleValidate;
 
 /**
  * 后台角色管理控制器
  */
-class Role extends BaseController
+class Role extends BackendBase
 {
     /**
      * 角色列表页面
@@ -18,7 +17,8 @@ class Role extends BaseController
      */
     public function index()
     {
-        return view('role/index');
+        $this->title = '角色管理';
+        return $this->render('role/index');
     }
 
     /**

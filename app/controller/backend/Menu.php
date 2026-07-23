@@ -3,14 +3,13 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
-use app\BaseController;
 use app\model\AuthMenus;
 use app\validate\MenuValidate;
 
 /**
  * 后台菜单管理控制器
  */
-class Menu extends BaseController
+class Menu extends BackendBase
 {
     /**
      * 菜单列表页面
@@ -18,7 +17,8 @@ class Menu extends BaseController
      */
     public function index()
     {
-        return view('menu/index');
+        $this->title = '菜单管理';
+        return $this->render('menu/index');
     }
 
     /**

@@ -80,14 +80,14 @@ class Login extends BaseController
         // 更新登录信息
         $user->updateLoginInfo($this->request->ip());
         
-        // 设置session
+        // 设置session（确保字段不为null）
         Session::set('user_id', $user->id);
         Session::set('user_info', [
             'id'              => $user->id,
-            'user_name'       => $user->user_name,
-            'user_nick'       => $user->user_nick,
-            'user_mobile'     => $user->user_mobile,
-            'user_email'      => $user->user_email,
+            'user_name'       => $user->user_name ?: '',
+            'user_nick'       => $user->user_nick ?: $user->user_name ?: '',
+            'user_mobile'     => $user->user_mobile ?: '',
+            'user_email'      => $user->user_email ?: '',
             'user_status'     => $user->user_status,
             'real_auth_status' => $user->real_auth_status,
         ]);

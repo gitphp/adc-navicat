@@ -3,13 +3,10 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
-use app\BaseController;
-use think\facade\Session;
-
 /**
  * 后台首页控制器
  */
-class Index extends BaseController
+class Index extends BackendBase
 {
     /**
      * 后台首页
@@ -17,11 +14,9 @@ class Index extends BaseController
      */
     public function index()
     {
-        $userInfo = Session::get('user_info');
+        $this->title = '系统管理后台';
         
-        return view('index/index', [
-            'user_info' => $userInfo,
-        ]);
+        return $this->render('index/index');
     }
 
     /**

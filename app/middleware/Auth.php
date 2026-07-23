@@ -60,7 +60,20 @@ class Auth
         
         // 权限检查
         $permission = $this->getPermissionCode($request);
-        if ($permission && !PermissionHelper::hasPermission($permission, $user) && !PermissionHelper::isSuperAdmin($user)) {
+        
+        // 超级管理员拥有所有权限
+        if (PermissionHelper::isSuperAdmin($user)) {
+            return $next($request);
+        }
+        
+        // 如果用户没有配置任何角色，放行（初始状态）
+        $roleIds = $user->getRoleIds();
+        if (empty($roleIds)) {
+            return $next($request);
+        }
+        
+        // 如果有权限标识但用户没有该权限，拒绝访问
+        if ($permission && !PermissionHelper::hasPermission($permission, $user)) {
             if ($request->isAjax()) {
                 return json([
                     'code' => 403,

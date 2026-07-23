@@ -3,14 +3,13 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
-use app\BaseController;
 use app\model\Category;
 use app\validate\CategoryValidate;
 
 /**
  * 后台分类管理控制器
  */
-class BackendCategory extends BaseController
+class BackendCategory extends BackendBase
 {
     /**
      * 分类列表页面
@@ -18,7 +17,8 @@ class BackendCategory extends BaseController
      */
     public function index()
     {
-        return view('category/index');
+        $this->title = '分类管理';
+        return $this->render('category/index');
     }
 
     /**

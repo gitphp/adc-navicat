@@ -3,14 +3,13 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
-use app\BaseController;
 use app\model\AuthPermissions;
 use app\validate\PermissionValidate;
 
 /**
  * 后台权限管理控制器
  */
-class Permission extends BaseController
+class Permission extends BackendBase
 {
     /**
      * 权限列表页面
@@ -18,7 +17,8 @@ class Permission extends BaseController
      */
     public function index()
     {
-        return view('permission/index');
+        $this->title = '权限管理';
+        return $this->render('permission/index');
     }
 
     /**

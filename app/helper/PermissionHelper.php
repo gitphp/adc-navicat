@@ -201,7 +201,8 @@ class PermissionHelper
         
         $roles = $user->getRoles();
         foreach ($roles as $role) {
-            if ($role->role_code === 'super_admin' || $role->role_code === 'admin') {
+            // role_code为super_admin或admin，或者角色名称为超级管理员，都视为超级管理员
+            if ($role->role_code === 'super_admin' || $role->role_code === 'admin' || $role->role_name === '超级管理员') {
                 return true;
             }
         }

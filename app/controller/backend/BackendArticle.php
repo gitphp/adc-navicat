@@ -3,15 +3,15 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
-use app\BaseController;
 use app\model\ConArticle;
 use app\model\Category;
 use app\validate\ArticleValidate;
+use think\facade\Session;
 
 /**
  * 后台文章管理控制器
  */
-class BackendArticle extends BaseController
+class BackendArticle extends BackendBase
 {
     /**
      * 文章列表页面
@@ -19,7 +19,8 @@ class BackendArticle extends BaseController
      */
     public function index()
     {
-        return view('article/index');
+        $this->title = '文章管理';
+        return $this->render('article/index');
     }
 
     /**
