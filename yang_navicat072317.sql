@@ -11,7 +11,7 @@
  Target Server Version : 80046 (8.0.46)
  File Encoding         : 65001
 
- Date: 23/07/2026 17:38:31
+ Date: 23/07/2026 17:52:50
 */
 
 SET NAMES utf8mb4;
@@ -101,11 +101,24 @@ CREATE TABLE `ad_positions`  (
   INDEX `idx_sort`(`sort` ASC) USING BTREE,
   INDEX `idx_created_at`(`created_at` ASC) USING BTREE,
   INDEX `idx_deleted_at`(`deleted_at` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 920733863055423246 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '广告位主表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733863055423259 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '广告位主表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ad_positions
 -- ----------------------------
+INSERT INTO `ad_positions` VALUES (920733863055423246, '2026年企业数字化转型峰会', '携手行业大咖，共话数字化未来', '/uploads/ad/banner_digital_summit.jpg', '/uploads/ad/mobile/banner_digital_summit.jpg', '/uploads/ad/thumb/banner_digital_summit.jpg', '', 2, 'https://www.example.com/event/digital-summit-2026', '{\"utm_medium\": \"banner_top\", \"utm_source\": \"home\", \"utm_campaign\": \"digital_summit\"}', '', '', 'home_banner_top', 1, 1, 0, NULL, '{\"city\": [\"深圳\", \"广州\", \"北京\", \"上海\", \"杭州\"], \"province\": [\"广东\", \"北京\", \"上海\", \"浙江\"]}', '2026-07-01 00:00:00', '2026-09-30 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 100, 1, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-01 09:00:00', '', 12580, 368, 0.0293, '{\"2026-07-01\": {\"click\": 15, \"impression\": 520}, \"2026-07-02\": {\"click\": 12, \"impression\": 480}, \"2026-07-03\": {\"click\": 18, \"impression\": 550}}', 920733860755423002, '2026-06-25 10:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423247, '企业官网全新升级 2.0 版本发布', '更流畅的体验，更强大的功能', '/uploads/ad/banner_v2_pc.jpg', '/uploads/ad/mobile/banner_v2_mobile.jpg', '/uploads/ad/thumb/banner_v2_thumb.jpg', '', 1, '/product/version-2-0', '{\"utm_medium\": \"banner_top_mobile\", \"utm_source\": \"home\", \"utm_campaign\": \"v2_launch\"}', '', '', 'home_banner_top', 3, 1, 0, NULL, NULL, '2026-07-15 00:00:00', '2026-08-31 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 95, 1, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-14 14:30:00', '', 8560, 245, 0.0286, NULL, 920733860755423003, '2026-07-10 09:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423248, '新人专享大礼包', '注册即送价值 500 元优惠券', '/uploads/ad/banner_new_user.jpg', '/uploads/ad/mobile/banner_new_user.jpg', '/uploads/ad/thumb/banner_new_user.jpg', '', 1, '/user/register', '{\"utm_medium\": \"banner_top\", \"utm_source\": \"home\", \"utm_campaign\": \"new_user_gift\"}', '', '', 'home_banner_top', 1, 1, 1, NULL, NULL, '2026-07-01 00:00:00', '2026-08-15 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 90, 2, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-01 08:00:00', '', 6320, 189, 0.0299, NULL, 920733860755423003, '2026-06-28 16:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423249, '企业级解决方案免费试用', '30天全功能体验，助力企业高效运营', '/uploads/ad/sidebar_free_trial.jpg', '', '/uploads/ad/thumb/sidebar_free_trial.jpg', '', 2, 'https://www.example.com/trial', '{\"utm_medium\": \"sidebar\", \"utm_source\": \"home\", \"utm_campaign\": \"free_trial\"}', '', '', 'home_sidebar', 1, 1, 0, NULL, '{\"province\": [\"广东\", \"北京\", \"上海\"]}', '2026-07-01 00:00:00', '2026-12-31 23:59:59', 1, '[{\"end\": \"18:00\", \"start\": \"09:00\"}]', '[1, 2, 3, 4, 5]', 80, 1, 1000, 50, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-01 10:00:00', '', 3240, 98, 0.0302, NULL, 920733860755423004, '2026-06-30 11:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423250, '合作伙伴招募计划', '诚邀优质合作伙伴，共享万亿市场', '/uploads/ad/bottom_partner.jpg', '/uploads/ad/mobile/bottom_partner.jpg', '/uploads/ad/thumb/bottom_partner.jpg', '', 2, 'https://www.example.com/partner', '{\"utm_medium\": \"bottom\", \"utm_source\": \"home\", \"utm_campaign\": \"partner_recruit\"}', '', '', 'home_bottom', 1, 1, 0, NULL, '{\"province\": [\"广东\", \"北京\", \"上海\", \"浙江\"]}', '2026-07-01 00:00:00', '2026-10-31 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 70, 3, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-01 09:00:00', '', 21500, 645, 0.0300, '{\"2026-07-01\": {\"click\": 36, \"impression\": 1200}, \"2026-07-02\": {\"click\": 33, \"impression\": 1100}}', 920733860755423004, '2026-06-25 14:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423251, '重要通知：系统升级维护公告', '2026年7月25日 02:00-06:00 暂停服务', '/uploads/ad/popup_maintenance.jpg', '/uploads/ad/mobile/popup_maintenance.jpg', '/uploads/ad/thumb/popup_maintenance.jpg', '', 4, '', NULL, '', '', 'home_popup', 1, 1, 0, NULL, NULL, '2026-07-20 00:00:00', '2026-07-25 23:59:59', 1, '[{\"end\": \"23:59\", \"start\": \"00:00\"}]', '[1, 2, 3, 4, 5, 6, 7]', 60, 2, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-19 17:00:00', '', 9800, 294, 0.0300, NULL, 920733860755423002, '2026-07-18 09:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423252, '技术干货：PHP 8 新特性详解', '深入剖析 PHP 8 的核心改进与最佳实践', '/uploads/ad/inner_php8.jpg', '/uploads/ad/mobile/inner_php8.jpg', '/uploads/ad/thumb/inner_php8.jpg', '', 1, '/article/php8-new-features', '{\"utm_medium\": \"banner_top\", \"utm_source\": \"inner\", \"utm_campaign\": \"php8\"}', '', '', 'inner_banner_top', 1, 1, 0, NULL, NULL, '2026-07-01 00:00:00', '2026-08-31 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 50, 1, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-01 10:00:00', '', 4200, 126, 0.0300, NULL, 920733860755423003, '2026-06-28 10:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423253, '扫描二维码关注公众号', '获取更多技术干货和行业资讯', '/uploads/ad/float_qrcode.jpg', '/uploads/ad/mobile/float_qrcode.jpg', '/uploads/ad/thumb/float_qrcode.jpg', '', 4, '', NULL, '', '', 'inner_article_float', 1, 1, 0, NULL, NULL, '2026-07-01 00:00:00', '2026-12-31 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 40, 3, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-01 08:00:00', '', 15000, 450, 0.0300, NULL, 920733860755423003, '2026-06-30 09:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423254, '新品发布：企业级 AI 智能平台', '赋能企业智能化转型，提升核心竞争力', '/uploads/ad/product_ai_platform.jpg', '/uploads/ad/mobile/product_ai_platform.jpg', '/uploads/ad/thumb/product_ai_platform.jpg', '', 1, '/product/ai-platform', '{\"utm_medium\": \"banner\", \"utm_source\": \"product\", \"utm_campaign\": \"ai_platform\"}', '', '', 'product_banner', 1, 1, 0, NULL, NULL, '2026-07-15 00:00:00', '2026-09-30 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 110, 3, 0, 0, NULL, 1, NULL, 4, 2, 920733860755423002, '2026-07-15 09:00:00', '', 3860, 116, 0.0301, NULL, 920733860755423003, '2026-07-14 10:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423255, '待发布：年度品牌宣传片', '敬请期待，即将上线', '/uploads/ad/draft_brand_film.jpg', '/uploads/ad/mobile/draft_brand_film.jpg', '/uploads/ad/thumb/draft_brand_film.jpg', '', 2, 'https://www.example.com/brand', '{\"utm_medium\": \"banner\", \"utm_source\": \"draft\"}', '', '', 'home_banner_top', 1, 1, 0, NULL, NULL, '2026-08-01 00:00:00', '2026-10-31 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 20, 1, 0, 0, NULL, 1, NULL, 1, 0, 0, NULL, '', 0, 0, 0.0000, NULL, 920733860755423003, '2026-07-20 14:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423256, '暑期促销活动', '全场商品 8 折起', '/uploads/ad/rejected_summer_sale.jpg', '/uploads/ad/mobile/rejected_summer_sale.jpg', '/uploads/ad/thumb/rejected_summer_sale.jpg', '', 2, 'https://www.example.com/summer-sale', '{\"utm_medium\": \"banner\", \"utm_source\": \"home\", \"utm_campaign\": \"summer_sale\"}', '', '', 'home_banner_top', 1, 1, 0, NULL, NULL, '2026-07-01 00:00:00', '2026-07-31 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 0, 1, 0, 0, NULL, 1, NULL, 7, 3, 920733860755423002, '2026-07-01 11:00:00', '广告素材涉及版权问题，请替换图片后重新提交审核', 0, 0, 0.0000, NULL, 920733860755423003, '2026-06-28 16:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423257, '限时优惠：企业版年度会员 5 折', '仅限前 100 名客户，先到先得', '/uploads/ad/paused_enterprise_discount.jpg', '/uploads/ad/mobile/paused_enterprise_discount.jpg', '/uploads/ad/thumb/paused_enterprise_discount.jpg', '', 2, 'https://www.example.com/enterprise-discount', '{\"utm_medium\": \"sidebar\", \"utm_source\": \"home\", \"utm_campaign\": \"enterprise_discount\"}', '', '', 'home_sidebar', 1, 1, 0, NULL, NULL, '2026-07-01 00:00:00', '2026-08-31 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 0, 1, 0, 0, NULL, 1, NULL, 6, 2, 920733860755423002, '2026-07-01 09:00:00', '', 1280, 38, 0.0297, NULL, 920733860755423004, '2026-06-30 14:00:00', '2026-07-23 09:43:18', NULL);
+INSERT INTO `ad_positions` VALUES (920733863055423258, '618 年中大促活动', '全场满减，限时抢购', '/uploads/ad/ended_618_sale.jpg', '/uploads/ad/mobile/ended_618_sale.jpg', '/uploads/ad/thumb/ended_618_sale.jpg', '', 2, 'https://www.example.com/618-sale', '{\"utm_medium\": \"banner_top\", \"utm_source\": \"home\", \"utm_campaign\": \"618_sale\"}', '', '', 'home_banner_top', 1, 1, 0, NULL, NULL, '2026-06-01 00:00:00', '2026-06-20 23:59:59', 0, NULL, '[1, 2, 3, 4, 5, 6, 7]', 0, 1, 0, 0, NULL, 1, NULL, 5, 2, 920733860755423002, '2026-06-01 08:00:00', '', 25600, 768, 0.0300, NULL, 920733860755423003, '2026-05-28 10:00:00', '2026-07-23 09:43:18', NULL);
 
 -- ----------------------------
 -- Table structure for ad_slots
@@ -231,11 +244,21 @@ CREATE TABLE `articles`  (
   INDEX `idx_published_at`(`published_at` ASC) USING BTREE,
   INDEX `idx_created_at`(`created_at` ASC) USING BTREE,
   INDEX `idx_deleted_at`(`deleted_at` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章主表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章主表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of articles
 -- ----------------------------
+INSERT INTO `articles` VALUES (1, '企业官网全新改版上线，开启数字化新征程', '历时3个月精心打造，全新视觉体验与功能升级', '/uploads/articles/cover/website_redesign.jpg', '<h2>全新官网，全新出发</h2><p>经过3个月的精心设计与开发，企业官网全新改版正式上线！</p><p>本次改版以用户为中心，全新设计了信息架构和视觉风格，并优化了移动端体验，让您随时随地获取最新资讯。</p><p><strong>主要升级亮点：</strong></p><ul><li>全新的品牌视觉形象</li><li>更流畅的页面加载速度</li><li>完善的响应式设计，适配各类设备</li><li>新增在线客服与即时咨询功能</li></ul><p>未来，我们将持续通过官网与大家分享企业动态、行业趋势与技术干货，敬请期待！</p>', 1, '企业官网全新改版正式上线，本次升级历时3个月，带来全新的视觉体验、更流畅的交互和更完善的功能。', 1, '[1, 2]', 920733860755423001, 'admin', '原创', '', 4, 1, 1, 1, '企业官网全新改版上线 - 品牌官网', '官网改版,企业官网,品牌升级,数字化', '企业官网全新改版正式上线，全新视觉与功能升级，开启数字化新征程。', '{\"video_url\": \"https://www.example.com/video/redesign.mp4\"}', 2580, 156, 89, 45, 23, '2026-07-20 09:00:00', '2026-07-15 10:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2026-07-18 14:00:00', '');
+INSERT INTO `articles` VALUES (2, '企业荣获2026年度“科技创新示范企业”称号', '以技术创新驱动企业发展，获行业高度认可', '/uploads/articles/cover/tech_award.jpg', '<p>近日，在2026年度科技创新大会上，本公司凭借在数字化领域的技术创新和产业应用，荣获“科技创新示范企业”称号。</p><p>本次评选由行业协会联合多家权威机构共同举办，旨在表彰在技术创新、成果转化和产业带动方面表现突出的企业。经过严格评审，本公司在技术研发投入、专利数量、行业影响力等维度均位列前茅。</p><p>公司CTO表示：“技术创新是公司发展的核心驱动力。未来我们将继续加大研发投入，推动产业数字化升级。” </p>', 1, '公司荣获2026年度“科技创新示范企业”称号，充分体现了行业对公司技术创新能力的认可。', 1, '[3]', 920733860755423002, 'super_admin', '原创', '', 4, 0, 1, 1, '科技创新示范企业 - 企业荣誉', '科技创新,示范企业,企业荣誉,技术奖项', '公司荣获2026年度“科技创新示范企业”称号，彰显技术创新实力。', NULL, 1860, 89, 56, 34, 12, '2026-07-10 10:30:00', '2026-07-08 16:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2026-07-09 09:00:00', '');
+INSERT INTO `articles` VALUES (3, '2026年企业数字化发展趋势报告', '深度解读数字化转型的新机遇与新挑战', '/uploads/articles/cover/digital_trend.jpg', '<p>2026年，企业数字化已从“可选项”变为“必选项”。根据最新行业报告，超过80%的企业将数字化转型作为核心战略。</p><p><strong>主要趋势：</strong></p><ul><li><strong>AI 驱动：</strong>人工智能正在重塑企业运营模式，从自动化到智能化</li><li><strong>数据资产：</strong>数据已成为企业最重要的资产之一</li><li><strong>云原生：</strong>云原生技术正在加速企业应用现代化</li><li><strong>安全合规：</strong>数据安全与合规成为企业数字化的重要基石</li></ul><p>报告建议，企业应从战略、组织、技术、文化四个维度全面推进数字化转型。</p>', 1, '深度解读2026年企业数字化发展趋势，从AI驱动、数据资产、云原生到安全合规，为企业提供转型参考。', 2, '[4, 5]', 920733860755423003, 'editor_zhang', '原创', '', 4, 1, 1, 1, '2026年企业数字化发展趋势报告', '企业数字化,数字化转型,AI,云原生,数据资产', '解读2026年企业数字化发展趋势，为企业转型提供参考和指引。', NULL, 3210, 245, 123, 78, 45, '2026-07-05 08:00:00', '2026-07-02 14:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2026-07-03 10:00:00', '');
+INSERT INTO `articles` VALUES (4, '产品 3.0 版本正式发布，带来全新功能体验', 'AI智能推荐、多端同步、数据可视化三大核心升级', '/uploads/articles/cover/product_3.0.jpg', '<p>经过半年的研发迭代，产品 3.0 版本正式与大家见面了！</p><h3>三大核心升级：</h3><ul><li><strong>AI 智能推荐：</strong>基于用户行为数据，提供个性化的内容推荐</li><li><strong>多端同步：</strong>Web、App、小程序数据实时同步，无缝切换</li><li><strong>数据可视化：</strong>内置多维度数据分析看板，辅助决策</li></ul><p>本次更新还优化了超过50项用户体验细节，期待为您带来更高效的使用体验。即日起，所有用户可在线升级至最新版本。</p>', 1, '产品3.0版本正式发布，带来AI智能推荐、多端同步、数据可视化三大核心升级。', 3, '[6, 7]', 920733860755423004, 'ops_li', '原创', '', 4, 0, 1, 1, '产品3.0正式发布 - 新品发布', '产品发布,3.0版本,AI推荐,数据可视化', '产品3.0版本正式发布，三大核心升级助力企业高效运营。', '{\"version\": \"3.0.0\", \"download_url\": \"https://www.example.com/download/product-3.0\"}', 4560, 321, 156, 89, 56, '2026-07-18 10:00:00', '2026-07-16 09:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2026-07-17 11:00:00', '');
+INSERT INTO `articles` VALUES (5, 'Hyperf 框架高性能实践：从入门到精通', '深入解析 Hyperf 的协程、依赖注入和注解机制', '/uploads/articles/cover/hyperf_best_practice.jpg', '<p>Hyperf 是 Swoole 生态中最流行的 PHP 框架之一，以其高性能和丰富的生态受到开发者的广泛关注。</p><h3>本篇主要分享：</h3><ul><li><strong>协程原理：</strong>理解 Swoole 协程的工作机制，写出高性能代码</li><li><strong>依赖注入：</strong>利用 DI 容器实现松耦合设计</li><li><strong>注解路由：</strong>使用注解简化路由配置，提高开发效率</li><li><strong>性能优化：</strong>常见的性能瓶颈分析与优化策略</li></ul><p>通过实际项目案例，帮助大家快速上手并写出高质量的 Hyperf 应用。</p>', 1, '深入解析 Hyperf 框架的核心机制，包括协程、依赖注入、注解路由和性能优化实践。', 4, '[8, 9]', 920733860755423001, 'admin', '原创', '', 4, 0, 1, 1, 'Hyperf框架高性能实践 - 技术分享', 'Hyperf,PHP,协程,依赖注入,性能优化', '深入解析 Hyperf 框架的核心机制与高性能实践。', NULL, 1980, 134, 67, 45, 28, '2026-07-12 14:30:00', '2026-07-10 11:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2026-07-11 09:00:00', '');
+INSERT INTO `articles` VALUES (6, '某大型制造企业数字化转型成功案例', '借助企业数字化平台，实现生产效率提升30%', '/uploads/articles/cover/case_manufacturing.jpg', '<p>某大型制造企业拥有超过5000名员工，业务涵盖产品研发、生产制造、供应链管理等多个环节。</p><p><strong>业务痛点：</strong></p><ul><li>数据孤岛严重，各部门信息不互通</li><li>业务流程效率低，审批周期长</li><li>缺乏数据驱动的决策支持</li></ul><p><strong>解决方案：</strong></p><p>通过企业数字化平台，实现了统一的数据中台、自动化流程引擎和智能分析看板。</p><p><strong>效果：</strong></p><ul><li>生产效率提升 30%</li><li>审批周期缩短 50%</li><li>数据决策效率提升 40%</li></ul>', 1, '某大型制造企业通过企业数字化平台实现生产效率提升30%的数字化转型案例。', 6, '[10]', 920733860755423003, 'editor_zhang', '原创', '', 4, 0, 1, 1, '制造企业数字化转型成功案例', '数字化转型,制造企业,客户案例,效率提升', '某大型制造企业数字化转型成功案例，生产效率提升30%。', NULL, 1560, 98, 45, 23, 15, '2026-07-08 16:00:00', '2026-07-06 15:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2026-07-07 10:00:00', '');
+INSERT INTO `articles` VALUES (7, '2026年第三季度产品路线图预告', '即将发布的新功能与改进计划', '/uploads/articles/cover/roadmap_q3.jpg', '<p>本文是2026年Q3产品路线图的草稿版本，正式发布前需要内部审核。</p><p><strong>计划中的主要功能：</strong></p><ul><li>AI 辅助写作功能</li><li>多语言国际化支持</li><li>数据导出增强</li><li>性能优化与稳定性提升</li></ul>', 1, '2026年Q3产品路线图预告，涵盖AI辅助写作、多语言支持等主要功能。', 3, '[11]', 920733860755423004, 'ops_li', '原创', '', 1, 0, 1, 1, '', '', '', NULL, 0, 0, 0, 0, 0, NULL, '2026-07-21 09:00:00', '2026-07-23 09:47:02', NULL, 0, NULL, '');
+INSERT INTO `articles` VALUES (8, '企业社会责任报告：2026年度可持续发展', '践行ESG理念，推动可持续发展', '/uploads/articles/cover/csr_2026.jpg', '<p>2026年度企业社会责任报告正式提交审核，涵盖环境保护、员工关怀、社会公益等方面的工作成果。</p><p><strong>主要成果：</strong></p><ul><li>碳排放减少 15%</li><li>员工满意度达 92%</li><li>累计公益投入 500 万元</li></ul>', 1, '2026年度企业社会责任报告，涵盖环境保护、员工关怀、社会公益等方面。', 1, '[12]', 920733860755423005, 'pm_wang', '原创', '', 2, 0, 1, 1, '企业社会责任报告2026 - 可持续发展', '社会责任,ESG,可持续发展,公益', '2026年度企业社会责任报告，践行ESG理念，推动可持续发展。', NULL, 0, 0, 0, 0, 0, NULL, '2026-07-22 11:00:00', '2026-07-23 09:47:02', NULL, 0, NULL, '');
+INSERT INTO `articles` VALUES (9, '2025年企业年度总结：砥砺前行，再创佳绩', '回顾2025，展望2026', '/uploads/articles/cover/yearly_2025.jpg', '<p>2025年是公司快速发展的一年，我们取得了以下成绩：</p><ul><li>营收同比增长 35%</li><li>服务客户突破 10,000 家</li><li>团队规模扩展至 500 人</li></ul><p>展望2026，我们将继续深耕行业，为客户创造更大的价值。</p>', 1, '2025年企业年度总结，回顾年度成绩与里程碑。', 1, '[13]', 920733860755423001, 'admin', '原创', '', 5, 0, 1, 1, '企业年度总结2025', '年度总结,企业成就,发展回顾', '2025年企业年度总结，回顾年度成绩与发展历程。', NULL, 8900, 567, 234, 123, 67, '2026-01-01 00:00:00', '2025-12-20 10:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2025-12-25 14:00:00', '');
+INSERT INTO `articles` VALUES (10, '2026年行业峰会精彩回顾', '全球行业领袖共话未来', '/uploads/articles/cover/summit_2026.jpg', '<p>本次行业峰会邀请了全球超过50位行业领袖，共同探讨行业发展的机遇与挑战。</p><p>但由于提交的素材涉及部分未经授权的内容，本次审核被驳回。</p>', 1, '2026年行业峰会精彩回顾，全球行业领袖共话未来。', 2, '[14]', 920733860755423006, 'sales_chen', '转载', 'https://www.example.com/source/summit', 6, 0, 0, 1, '', '', '', NULL, 0, 0, 0, 0, 0, NULL, '2026-07-19 14:00:00', '2026-07-23 09:47:02', NULL, 920733860755423002, '2026-07-20 09:00:00', '文章中的图片素材涉及版权问题，请替换后重新提交审核。');
 
 -- ----------------------------
 -- Table structure for auth_menus
@@ -465,6 +488,143 @@ CREATE TABLE `auth_role_permissions`  (
 -- ----------------------------
 -- Records of auth_role_permissions
 -- ----------------------------
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423246, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423247, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423248, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423249, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423250, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423251, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423252, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423253, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423254, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423255, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423256, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423257, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423258, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423259, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423260, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423261, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423262, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423263, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423264, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423265, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423266, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423267, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423268, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423269, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423270, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423271, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423272, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423273, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423274, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423275, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423276, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423277, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423278, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423279, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423280, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423281, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423282, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423283, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423284, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423285, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423286, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423287, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423288, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423289, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423290, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423291, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423247, 920733862755423292, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423246, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423249, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423257, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423258, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423259, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423260, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423261, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423282, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423283, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423284, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423285, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423286, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423287, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423248, 920733862755423288, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423247, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423251, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423252, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423253, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423264, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423265, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423266, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423267, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423268, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423269, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423270, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423271, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423272, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423273, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423289, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423290, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423291, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423249, 920733862755423292, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423248, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423254, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423255, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423256, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423274, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423275, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423276, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423277, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423278, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423279, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423280, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423250, 920733862755423281, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423251, 920733862755423251, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423251, 920733862755423264, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423251, 920733862755423265, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423251, 920733862755423266, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423251, 920733862755423267, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423254, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423255, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423256, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423274, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423275, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423277, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423278, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423252, 920733862755423280, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423253, 920733862755423246, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423253, 920733862755423264, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423247, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423248, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423251, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423252, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423253, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423254, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423255, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423256, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423264, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423265, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423266, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423267, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423268, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423269, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423270, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423271, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423272, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423273, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423274, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423275, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423276, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423277, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423278, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423279, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423280, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423254, 920733862755423281, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423255, 920733862755423260, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423255, 920733862755423283, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423255, 920733862755423285, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423255, 920733862755423287, '2026-07-23 09:49:06');
+INSERT INTO `auth_role_permissions` VALUES (920733860755423256, 920733862755423246, '2026-07-23 09:49:06');
 
 -- ----------------------------
 -- Table structure for auth_user_role
@@ -480,7 +640,15 @@ CREATE TABLE `auth_user_role`  (
 -- ----------------------------
 -- Records of auth_user_role
 -- ----------------------------
+INSERT INTO `auth_user_role` VALUES (920733860755423002, 920733860755423247, '2026-07-23 09:50:36');
+INSERT INTO `auth_user_role` VALUES (920733860755423003, 920733860755423251, '2026-07-23 09:50:36');
+INSERT INTO `auth_user_role` VALUES (920733860755423004, 920733860755423252, '2026-07-23 09:50:36');
+INSERT INTO `auth_user_role` VALUES (920733860755423005, 920733860755423254, '2026-07-23 09:50:36');
+INSERT INTO `auth_user_role` VALUES (920733860755423006, 920733860755423253, '2026-07-23 09:50:36');
+INSERT INTO `auth_user_role` VALUES (920733860755423007, 920733860755423256, '2026-07-23 09:50:36');
+INSERT INTO `auth_user_role` VALUES (920733860755423008, 920733860755423253, '2026-07-23 09:50:36');
 INSERT INTO `auth_user_role` VALUES (934035802554576897, 920733860755423247, '2026-07-23 05:32:44');
+INSERT INTO `auth_user_role` VALUES (934035802554576897, 920733860755423248, '2026-07-23 09:50:36');
 
 -- ----------------------------
 -- Table structure for book_mark
@@ -610,11 +778,21 @@ CREATE TABLE `feedbacks`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_status`(`fb_status` ASC) USING BTREE,
   INDEX `idx_created_at`(`created_at` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 920733863054423246 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户留言表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733863054423256 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户留言表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of feedbacks
 -- ----------------------------
+INSERT INTO `feedbacks` VALUES (920733863054423246, '张伟', '13812345678', 'zhangwei@qq.com', '深圳科技有限公司', '咨询企业版产品功能与报价', '你好，我公司目前正在选型企业级管理系统，看到贵公司的产品介绍后很感兴趣。请问企业版是否支持多租户？能否提供一份详细的功能清单和报价方案？我们预计采购50个用户，希望能在本月底前完成选型。', 0, NULL, NULL, '192.168.1.100', '2026-07-22 09:30:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423247, '李娜', '15987654321', 'lina@partner.com', '上海云创科技', '寻求渠道合作机会', '我司是专业的IT解决方案服务商，主要服务于华东地区的制造企业。看到贵公司的产品在行业内口碑很好，希望能洽谈渠道代理合作。请安排相关负责人与我联系，谢谢！', 0, NULL, NULL, '10.0.1.50', '2026-07-22 14:20:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423248, '王小明', '13524681357', 'wangxm@tech.com', '北京创新科技', '系统升级后数据无法同步', '我们使用的是贵公司产品3.0版本，上周升级后，发现部分数据无法正常同步到云端。已尝试重启服务但问题依旧，麻烦尽快安排技术人员协助排查，我们这边业务受到了影响。', 0, NULL, NULL, '172.16.0.30', '2026-07-21 16:45:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423249, '陈静', '13698765432', 'chenjing@mail.com', '广州越秀集团', '建议增加多语言支持功能', '我们是跨国企业，目前贵公司产品仅支持中英文，建议在后续版本中增加对日语和韩语的支持，方便我们海外团队使用。如果能提供多语言切换功能就更好了。期待产品越来越好！', 0, NULL, NULL, '192.168.2.80', '2026-07-21 11:00:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423250, '刘洋', '15234567890', 'liuyang@outlook.com', '', '咨询PHP开发岗位招聘信息', '您好！我看到贵公司招聘PHP高级开发工程师，我拥有6年PHP开发经验，熟悉Hyperf和ThinkPHP框架。想了解该岗位是否还在招人？以及面试流程是怎样的？期待您的回复！', 0, NULL, NULL, '10.0.2.15', '2026-07-20 09:00:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423251, '赵磊', '13765432198', 'zhaolei@abc.com', '杭州云创科技', '咨询产品价格与部署方案', '我司正在寻找一套企业级CRM解决方案，想咨询贵公司产品的价格体系和部署方式。同时希望能安排一次在线演示，让我们团队了解一下产品的实际使用体验。', 1, '尊敬的赵先生，您好！感谢您对产品的关注。相关产品资料和报价方案已发送至您的邮箱，并已安排销售顾问于明日10:00与您联系，届时将为您做详细的产品演示。如有其他问题，可随时联系我们的客服热线。祝工作顺利！', '2026-07-21 17:30:00', '192.168.3.20', '2026-07-19 15:00:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423252, '孙婷', '15824681357', 'sunting@qq.com', '成都互联科技', '希望能成为贵公司渠道伙伴', '我们公司在西南地区深耕企业服务多年，拥有超过500家客户资源。希望能成为贵公司在西南地区的渠道合作伙伴，共同开拓市场。请告知合作条件和流程。', 1, '尊敬的孙总，您好！非常欢迎合作意向。我们已安排渠道部负责人在今日内与您联系，详细沟通合作细节。同时，相关合作政策已发至您的邮箱，请您查收。期待我们的合作！', '2026-07-21 10:00:00', '192.168.4.40', '2026-07-19 11:30:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423253, '钱森', '13987654321', 'qiansen@tech.com', '苏州智能制造', '产品使用遇到性能瓶颈', '我们是贵公司的老客户，使用产品已有一年多。最近随着业务量增长，系统响应速度明显变慢。请问是否有性能优化的方案或建议？希望能得到专业指导。', 1, '钱先生，您好！感谢您长期以来的支持。针对您反馈的性能问题，建议从以下几个方面进行优化：1. 检查数据库索引配置；2. 开启缓存功能；3. 升级到最新版本（3.1版本已对性能有较大提升）。我们已在后台为您的账户开启了高级技术支持通道，相关优化文档也已发送至您的邮箱。如有疑问可随时联系我们。', '2026-07-20 14:30:00', '10.0.3.60', '2026-07-18 08:30:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423254, '周玥', '15012345678', 'zhouyue@mail.com', '厦门科技集团', '产品体验很好，特别感谢', '您好！我是贵公司的产品用户，最近使用产品感觉非常好，界面简洁，功能实用，极大提升了我们的工作效率。感谢你们团队做出这么优秀的产品！特此留言表达感谢。', 1, '周女士，您好！非常感谢您的认可和鼓励。客户的满意是我们最大的动力！我们会继续打磨产品，为您提供更好的使用体验。如有任何建议或需求，欢迎随时联系我们。祝您工作愉快！', '2026-07-20 09:00:00', '192.168.5.70', '2026-07-17 16:00:00', '2026-07-23 09:51:53');
+INSERT INTO `feedbacks` VALUES (920733863054423255, '吴强', '18965432109', 'wuqiang@tech.com', '武汉高新科技', '咨询产品定制化开发服务', '我公司需要一套定制化的企业管理系统，想咨询贵公司是否接受定制化开发？一般定制周期和费用大概是怎样的？希望能得到专业的解答。', 1, '吴先生，您好！感谢您的咨询。关于定制化开发服务，已有专人整理详细方案并发送至您的邮箱。销售经理会在明日与您电话沟通具体需求细节。请注意查收邮件，感谢您的关注！', '2026-07-19 16:00:00', '172.16.1.25', '2026-07-16 10:30:00', '2026-07-23 09:51:53');
 
 -- ----------------------------
 -- Table structure for friend_links
