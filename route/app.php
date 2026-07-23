@@ -163,7 +163,14 @@ Route::group('backend', function() {
     Route::post('siteconfigs/del', 'backend.backendsiteconfigs/del');
     Route::post('siteconfigs/saveBatch', 'backend.backendsiteconfigs/saveBatch');
     Route::get('siteconfigs/groupConfig', 'backend.backendsiteconfigs/groupConfig');
-})->middleware(\app\middleware\Auth::class);
+    
+    // 操作日志管理
+    Route::get('operationlog', 'backend.backendoperationlog/index');
+    Route::get('operationlog/list', 'backend.backendoperationlog/list');
+    Route::get('operationlog/view', 'backend.backendoperationlog/view');
+    Route::get('operationlog/actions', 'backend.backendoperationlog/actions');
+    Route::get('operationlog/bizTypes', 'backend.backendoperationlog/bizTypes');
+})->middleware(\app\middleware\Auth::class)->middleware(\app\middleware\OperationLogMiddleware::class);
 
 Route::get('think', function () {
     return 'hello,ThinkPHP8!';
