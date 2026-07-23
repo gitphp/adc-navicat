@@ -1,420 +1,316 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?: '系统管理后台' ?></title>
-    <link rel="stylesheet" href="/static/backend/layui/css/layui.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f0f2f5;
-            overflow: hidden;
-        }
-        /* 顶部导航 */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 50px;
-            background: #393D49;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 18px;
-            font-weight: 600;
-        }
-        .logo-text {
-            color: #fff;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: 500;
-            color: #fff;
-        }
-        .user-name {
-            font-size: 14px;
-        }
-        .logout-btn {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 6px 16px;
-            background: #FF5722;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-        .logout-btn:hover {
-            background: #e64a19;
-        }
-        /* 侧边栏 */
-        .sidebar {
-            position: fixed;
-            top: 50px;
-            left: 0;
-            bottom: 0;
-            width: 220px;
-            background: #2F4050;
-            overflow-y: auto;
-            z-index: 999;
-            transition: transform 0.3s;
-        }
-        .sidebar-menu {
-            padding: 10px 0;
-        }
-        .menu-item {
-            margin-bottom: 2px;
-        }
-        .menu-header {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: #a7b1c2;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 14px;
-        }
-        .menu-header:hover {
-            background: #1ab394;
-            color: #fff;
-        }
-        .menu-header.open {
-            background: #1ab394;
-            color: #fff;
-        }
-        .menu-header i.layui-icon {
-            width: 24px;
-            font-size: 16px;
-            margin-right: 10px;
-        }
-        .menu-title {
-            flex: 1;
-        }
-        .menu-header .arrow {
-            font-size: 12px;
-            transition: transform 0.3s;
-        }
-        .menu-header.open .arrow {
-            transform: rotate(180deg);
-        }
-        .menu-children {
-            display: none;
-            background: #1f2d3d;
-        }
-        .menu-children.open {
-            display: block;
-        }
-        .sub-has-children {
-            padding-left: 10px;
-        }
-        .sub-menu-header {
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            color: #8aa4af;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
-        }
-        .sub-menu-header:hover {
-            background: #2f4050;
-            color: #fff;
-        }
-        .sub-menu-header.open {
-            background: #2f4050;
-            color: #fff;
-        }
-        .sub-menu-title {
-            flex: 1;
-        }
-        .sub-arrow {
-            font-size: 12px;
-            transition: transform 0.3s;
-        }
-        .sub-menu-header.open .sub-arrow {
-            transform: rotate(90deg);
-        }
-        .sub-menu-children {
-            display: none;
-            background: #16202a;
-        }
-        .sub-menu-children.open {
-            display: block;
-        }
-        .menu-link {
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            color: #8aa4af;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
-        }
-        .menu-link:hover {
-            background: #1ab394;
-            color: #fff;
-            border-left-color: #1ab394;
-        }
-        .menu-link.active {
-            background: #1ab394;
-            color: #fff;
-            border-left-color: #1ab394;
-        }
-        .menu-link.single {
-            padding: 12px 20px;
-            font-size: 14px;
-        }
-        .menu-link i.layui-icon {
-            width: 20px;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-        .menu-text {
-            flex: 1;
-        }
-        /* 主内容区域 */
-        .main-container {
-            margin-left: 220px;
-            margin-top: 50px;
-            height: calc(100vh - 50px);
-            overflow-y: auto;
-            padding: 20px;
-            transition: margin-left 0.3s;
-        }
-        .content-wrapper {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            min-height: calc(100% - 40px);
-        }
-        .content-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e6e6e6;
-            margin-bottom: 20px;
-        }
-        .content-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-        }
-        .content-actions {
-            display: flex;
-            gap: 10px;
-        }
-        /* Layui样式覆盖 */
-        .layui-btn {
-            border-radius: 4px;
-        }
-        .layui-table {
-            margin: 0;
-        }
-        .layui-card {
-            border-radius: 8px;
-        }
-        /* 加载动画 */
-        .loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
-            color: #999;
-        }
-        .loading i {
-            font-size: 24px;
-            margin-right: 10px;
-        }
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .main-container {
-                margin-left: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- 顶部导航 -->
-    <?= include 'header.php' ?>
-    
-    <!-- 侧边栏菜单 -->
-    <?= include 'sidebar.php' ?>
-    
-    <script src="/static/backend/layui/layui.js"></script>
-    
-    <!-- 主内容区域 -->
-    <div class="main-container">
+<?php include 'head.php'; ?>
+
+<!-- 侧边栏 -->
+<?php include 'sidebar.php'; ?>
+
+<!-- 主区域：顶栏 + 标签 + 内容 + 页脚 -->
+<div class="main-container" id="main-container">
+    <?php include 'header.php'; ?>
+
+    <div class="page-content" id="page-content">
         <div class="content-wrapper" id="content-wrapper">
-            <!-- 内容区域（由子页面填充） -->
             <?= $content ?>
         </div>
+        <?php include 'footer.php'; ?>
     </div>
-    
-    <script>
-        // 菜单展开/收起 - 不合并关闭其他菜单
-        function toggleMenu(id) {
-            var el = document.getElementById(id);
-            var header = el.parentElement.querySelector('.menu-header');
-            if (el.classList.contains('open')) {
-                el.classList.remove('open');
-                header.classList.remove('open');
-            } else {
-                el.classList.add('open');
-                header.classList.add('open');
-            }
+</div>
+
+<script src="/static/backend/layui/layui.js"></script>
+<script>
+    function toggleSidebar() {
+        var sidebar = document.getElementById('sidebar');
+        var main = document.getElementById('main-container');
+        sidebar.classList.toggle('collapsed');
+        main.classList.toggle('collapsed');
+    }
+
+    function toggleMenu(id) {
+        var el = document.getElementById(id);
+        var header = el.parentElement.querySelector('.menu-header');
+        if (el.classList.contains('open')) {
+            el.classList.remove('open');
+            header.classList.remove('open');
+        } else {
+            el.classList.add('open');
+            header.classList.add('open');
+        }
+    }
+
+    function toggleSubMenu(id) {
+        var el = document.getElementById(id);
+        var header = el.parentElement.querySelector('.sub-menu-header');
+        if (el.classList.contains('open')) {
+            el.classList.remove('open');
+            header.classList.remove('open');
+        } else {
+            el.classList.add('open');
+            header.classList.add('open');
+        }
+    }
+
+    function scrollTabs(direction) {
+        var tabsNav = document.getElementById('tabsNav');
+        var amount = 180;
+        tabsNav.scrollBy(direction === 'left' ? -amount : amount, 0);
+    }
+
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    function toggleUserMenu(e) {
+        e.stopPropagation();
+        document.getElementById('userDropdown').classList.toggle('show');
+    }
+
+    document.addEventListener('click', function() {
+        var dd = document.getElementById('userDropdown');
+        if (dd) dd.classList.remove('show');
+    });
+
+    function refreshContent() {
+        var active = document.querySelector('.tab-item.active');
+        if (active) {
+            var url = active.getAttribute('data-url');
+            delete tabContentCache[url];
+            loadContentByUrl(url);
+        }
+    }
+
+    // 标签页内容缓存 { url: { html: 内容, rendered: 是否已渲染 } }
+    var tabContentCache = {};
+    var activeTabUrl = '';
+
+    function addTab(url, title) {
+        var tabsNav = document.getElementById('tabsNav');
+        var existing = tabsNav.querySelector('.tab-item[data-url="' + url + '"]');
+        if (existing) {
+            switchTab(existing);
+            return;
+        }
+
+        var tab = document.createElement('div');
+        tab.className = 'tab-item';
+        tab.setAttribute('data-url', url);
+        tab.setAttribute('onclick', 'switchTab(this)');
+        tab.innerHTML = '<span>' + title + '</span>' +
+            '<i class="layui-icon layui-icon-close tab-close" onclick="event.stopPropagation();closeTab(this)"></i>';
+        tabsNav.appendChild(tab);
+        switchTab(tab);
+        tab.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+    }
+
+    function switchTab(tabElement) {
+        var url = tabElement.getAttribute('data-url');
+        
+        // 如果点击的是当前已激活的tab，不做任何操作
+        if (activeTabUrl === url) {
+            return;
         }
         
-        function toggleSubMenu(id) {
-            var el = document.getElementById(id);
-            var header = el.parentElement.querySelector('.sub-menu-header');
-            if (el.classList.contains('open')) {
-                el.classList.remove('open');
-                header.classList.remove('open');
-            } else {
-                el.classList.add('open');
-                header.classList.add('open');
-            }
+        // 保存当前激活tab的内容到缓存
+        if (activeTabUrl && tabContentCache[activeTabUrl]) {
+            var wrapper = document.getElementById('content-wrapper');
+            tabContentCache[activeTabUrl].html = wrapper.innerHTML;
         }
+        
+        // 更新tab激活状态
+        document.querySelectorAll('#tabsNav .tab-item').forEach(function(t) {
+            t.classList.remove('active');
+        });
+        tabElement.classList.add('active');
+        
+        // 更新当前激活URL
+        activeTabUrl = url;
         
         // 加载内容
-        function loadContent(url, element) {
-            if (!url || url === '#') return;
-            
-            // 更新激活状态
-            document.querySelectorAll('.menu-link').forEach(function(item) {
-                item.classList.remove('active');
-            });
-            element.classList.add('active');
-            
-            // 显示加载状态
-            var wrapper = document.getElementById('content-wrapper');
-            wrapper.innerHTML = '<div class="loading"><i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate"></i> 加载中...</div>';
-            
-            // 使用 layui.$ 发起 AJAX 请求
-            layui.$.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'html',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                success: function(html) {
-                    wrapper.innerHTML = html;
-                    // 执行加载的 HTML 中的脚本
-                    executeScripts(wrapper);
-                    // 重新渲染 layui 组件
-                    layui.use(['form', 'table', 'layer'], function() {
-                        var form = layui.form;
-                        var table = layui.table;
-                        var layer = layui.layer;
-                        form.render();
-                    });
-                },
-                error: function() {
-                    wrapper.innerHTML = '<div class="loading">加载失败，请刷新页面重试</div>';
+        loadContentByUrl(url);
+    }
+
+    function closeTab(closeIcon) {
+        var tab = closeIcon.parentElement;
+        var url = tab.getAttribute('data-url');
+        var tabs = document.querySelectorAll('#tabsNav .tab-item');
+        if (tabs.length <= 1) return;
+
+        if (tab.classList.contains('active')) {
+            var next = tab.nextElementSibling || tab.previousElementSibling;
+            if (next) switchTab(next);
+        }
+        tab.remove();
+        delete tabContentCache[url];
+    }
+
+    function syncMenuActive(url) {
+        document.querySelectorAll('.menu-link').forEach(function(item) {
+            item.classList.remove('active');
+        });
+        document.querySelectorAll('.menu-header').forEach(function(item) {
+            item.classList.remove('active');
+        });
+
+        var activeLink = null;
+        document.querySelectorAll('.menu-link').forEach(function(item) {
+            if (item.getAttribute('data-url') === url) {
+                item.classList.add('active');
+                activeLink = item;
+            }
+        });
+
+        if (activeLink) {
+            var parent = activeLink.parentElement;
+            while (parent && parent !== document.body) {
+                if (parent.classList.contains('has-children') || parent.classList.contains('menu-item')) {
+                    var kids = parent.children;
+                    for (var i = 0; i < kids.length; i++) {
+                        if (kids[i].classList.contains('menu-header')) kids[i].classList.add('open');
+                        if (kids[i].classList.contains('menu-children')) kids[i].classList.add('open');
+                        if (kids[i].classList.contains('sub-menu-header')) kids[i].classList.add('open');
+                        if (kids[i].classList.contains('sub-menu-children')) kids[i].classList.add('open');
+                    }
                 }
-            });
-        }
-        
-        // 执行 HTML 中的脚本
-        function executeScripts(container) {
-            var scripts = container.querySelectorAll('script');
-            scripts.forEach(function(script) {
-                // 移除原脚本标签
-                script.parentNode.removeChild(script);
-                
-                var newScript = document.createElement('script');
-                newScript.type = 'text/javascript';
-                if (script.src) {
-                    newScript.src = script.src;
-                    newScript.onload = function() {
-                        // 脚本加载完成后初始化
-                        initLayuiComponents(container);
-                    };
-                } else {
-                    // 内联脚本，直接执行
-                    newScript.innerHTML = script.innerHTML;
-                }
-                // 将脚本添加到 container 末尾，确保 DOM 元素已就绪
-                container.appendChild(newScript);
-            });
-            // 如果没有外部脚本，直接初始化
-            initLayuiComponents(container);
-        }
-        
-        // 初始化 layui 组件
-        function initLayuiComponents(container) {
-            layui.use(['form', 'table', 'layer'], function() {
-                var form = layui.form;
-                var table = layui.table;
-                var layer = layui.layer;
-                
-                // 重新渲染表单
-                form.render();
-                
-                // 重新渲染表格 - 通过查找 table.render 调用来初始化
-                // 由于脚本已经执行，table.render 应该已经被调用了
-                // 这里主要处理 form 和其他需要重新渲染的组件
-                
-                // 确保 layer 可用
-                window.layer = layer;
-                window.form = form;
-                window.table = table;
-            });
-        }
-        
-        // 退出登录
-        function logout() {
-            if (confirm('确定要退出登录吗？')) {
-                window.location.href = '/backend/login/logout';
+                parent = parent.parentElement;
             }
         }
-    </script>
+    }
+
+    function loadContentByUrl(url) {
+        if (!url || url === '#') return;
+        syncMenuActive(url);
+
+        var wrapper = document.getElementById('content-wrapper');
+        
+        // 检查缓存
+        if (tabContentCache[url]) {
+            // 直接恢复缓存的HTML，不再执行脚本（避免重复请求接口）
+            wrapper.innerHTML = tabContentCache[url].html;
+            // 只渲染表单，不执行表格渲染脚本
+            layui.use(['form', 'layer'], function() {
+                var form = layui.form;
+                form.render();
+            });
+            return;
+        }
+
+        // 首次加载
+        wrapper.innerHTML = '<div class="loading"><i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate"></i> 加载中...</div>';
+
+        layui.$.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            success: function(html) {
+                // 缓存内容，标记为已渲染
+                tabContentCache[url] = { html: html, rendered: true };
+                wrapper.innerHTML = html;
+                executeScripts(wrapper);
+            },
+            error: function() {
+                wrapper.innerHTML = '<div class="loading">加载失败，请刷新页面重试</div>';
+            }
+        });
+    }
+
+    function loadContent(url, element) {
+        if (!url || url === '#') return;
+        var title = '页面';
+        if (element) {
+            var textSpan = element.querySelector('.menu-text');
+            if (textSpan) title = textSpan.textContent;
+        }
+        addTab(url, title);
+    }
+
+    function executeScripts(container) {
+        var scripts = container.querySelectorAll('script');
+        scripts.forEach(function(script) {
+            script.parentNode.removeChild(script);
+            var newScript = document.createElement('script');
+            newScript.type = 'text/javascript';
+            if (script.src) {
+                newScript.src = script.src;
+                newScript.onload = function() { initLayuiComponents(); };
+            } else {
+                newScript.innerHTML = script.innerHTML;
+            }
+            container.appendChild(newScript);
+        });
+        initLayuiComponents();
+    }
+
+    function initLayuiComponents() {
+        layui.use(['form', 'table', 'layer'], function() {
+            var form = layui.form;
+            form.render();
+            window.layer = layui.layer;
+            window.form = form;
+            window.table = layui.table;
+        });
+    }
+
+    function logout() {
+        if (confirm('确定要退出登录吗？')) {
+            window.location.href = '/backend/login/logout';
+        }
+    }
+
+    var treeMobile = document.querySelector('.site-tree-mobile');
+    var shadeMobile = document.querySelector('.site-mobile-shade');
+    if (treeMobile) {
+        treeMobile.addEventListener('click', function() {
+            document.body.classList.add('site-mobile');
+        });
+    }
+    if (shadeMobile) {
+        shadeMobile.addEventListener('click', function() {
+            document.body.classList.remove('site-mobile');
+        });
+    }
+
+    var fixbarTop = document.querySelector('.layui-fixbar-top');
+    if (fixbarTop) {
+        fixbarTop.style.display = 'none';
+        window.addEventListener('scroll', function() {
+            fixbarTop.style.display = window.scrollY > 100 ? 'block' : 'none';
+        }, true);
+        fixbarTop.addEventListener('click', function() {
+            var page = document.getElementById('page-content');
+            if (page) page.scrollTo({ top: 0, behavior: 'smooth' });
+            else window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 首屏根据当前路径同步菜单与标签
+    (function initCurrentPage() {
+        var path = window.location.pathname;
+        if (!path || path === '/' || path.indexOf('/backend/index') === 0) return;
+
+        var title = document.title || '页面';
+        var match = document.querySelector('.menu-link[data-url="' + path + '"]');
+        if (match) {
+            var textSpan = match.querySelector('.menu-text');
+            if (textSpan) title = textSpan.textContent;
+        }
+
+        var tabsNav = document.getElementById('tabsNav');
+        var home = tabsNav.querySelector('.tab-item');
+        if (home) home.classList.remove('active');
+
+        var tab = document.createElement('div');
+        tab.className = 'tab-item active';
+        tab.setAttribute('data-url', path);
+        tab.setAttribute('onclick', 'switchTab(this)');
+        tab.innerHTML = '<span>' + title + '</span>' +
+            '<i class="layui-icon layui-icon-close tab-close" onclick="event.stopPropagation();closeTab(this)"></i>';
+        tabsNav.appendChild(tab);
+        syncMenuActive(path);
+        tabContentCache[path] = { html: document.getElementById('content-wrapper').innerHTML, rendered: true };
+    })();
+</script>
 </body>
 </html>

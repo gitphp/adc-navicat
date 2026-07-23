@@ -491,7 +491,7 @@
         margin-bottom: 20px;
         flex-wrap: wrap;
     }
-    .shortcut-item {
+    .dashboard-shortcuts .shortcut-item {
         width: 100px;
         background: #fff;
         border-radius: 8px;
@@ -502,12 +502,15 @@
         align-items: center;
         cursor: pointer;
         transition: all 0.2s;
+        height: auto;
+        color: inherit;
     }
-    .shortcut-item:hover {
+    .dashboard-shortcuts .shortcut-item:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        opacity: 1;
     }
-    .shortcut-icon {
+    .dashboard-shortcuts .shortcut-icon {
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -526,7 +529,7 @@
     .friendlink-icon { background: rgba(91, 192, 222, 0.1); color: #5bc0de; }
     .config-icon { background: rgba(200, 200, 200, 0.1); color: #999; }
 
-    .shortcut-text {
+    .dashboard-shortcuts .shortcut-text {
         font-size: 13px;
         color: #333;
         text-align: center;
