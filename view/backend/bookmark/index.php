@@ -167,7 +167,7 @@
         });
         
         // 添加书签
-        function addBookMark() {
+        window.addBookMark = function() {
             layer.open({
                 type: 2,
                 title: '添加书签',
@@ -180,7 +180,7 @@
         }
         
         // 编辑书签
-        function editBookMark(id) {
+        window.editBookMark = function(id) {
             layer.open({
                 type: 2,
                 title: '编辑书签',
@@ -193,7 +193,7 @@
         }
         
         // 删除书签
-        function deleteBookMark(id, name) {
+        window.deleteBookMark = function(id, name) {
             layer.confirm('确定要删除书签「' + name + '」吗？', {
                 icon: 3,
                 title: '提示'
@@ -220,7 +220,7 @@
         }
         
         // 切换状态
-        function changeStatus(id, status) {
+        window.changeStatus = function(id, status) {
             var statusText = status === 1 ? '显示' : '隐藏';
             layer.confirm('确定要' + statusText + '该书签吗？', {
                 icon: 3,

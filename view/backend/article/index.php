@@ -399,7 +399,7 @@
             }
             
             // 添加文章
-            function addArticle() {
+            window.addArticle = function() {
                 layer.open({
                     type: 2,
                     title: '添加文章',
@@ -413,7 +413,7 @@
             }
             
             // 编辑文章
-            function editArticle(id) {
+            window.editArticle = function(id) {
                 layer.open({
                     type: 2,
                     title: '编辑文章',

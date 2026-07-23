@@ -215,7 +215,7 @@
             });
             
             // 添加分类
-            function addCategory(parentId) {
+            window.addCategory = function(parentId) {
                 var url = '/backend/category/add';
                 if (parentId) {
                     url += '?parent_id=' + parentId;
@@ -232,7 +232,7 @@
             }
             
             // 编辑分类
-            function editCategory(id) {
+            window.editCategory = function(id) {
                 layer.open({
                     type: 2,
                     title: '编辑分类',
@@ -245,7 +245,7 @@
             }
             
             // 删除分类
-            function deleteCategory(id, name) {
+            window.deleteCategory = function(id, name) {
                 layer.confirm('确定要删除分类「' + name + '」吗？', {
                     icon: 3,
                     title: '提示'

@@ -167,7 +167,7 @@
         }
         
         // 添加广告
-        function addAdPosition() {
+        window.addAdPosition = function() {
             layer.open({
                 type: 2,
                 title: '添加广告',
@@ -180,7 +180,7 @@
         }
         
         // 编辑广告
-        function editAdPosition(id) {
+        window.editAdPosition = function(id) {
             layer.open({
                 type: 2,
                 title: '编辑广告',
@@ -193,7 +193,7 @@
         }
         
         // 删除广告
-        function delAdPosition(id) {
+        window.delAdPosition = function(id) {
             layer.confirm('确定要删除该广告吗？', function(index) {
                 layui.$.ajax({
                     url: '/backend/adpositions/del',

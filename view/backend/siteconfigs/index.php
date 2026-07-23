@@ -111,7 +111,7 @@
         }
         
         // 添加配置
-        function addConfig() {
+        window.addConfig = function() {
             layer.open({
                 type: 2,
                 title: '添加配置',
@@ -124,7 +124,7 @@
         }
         
         // 编辑配置
-        function editConfig(id) {
+        window.editConfig = function(id) {
             layer.open({
                 type: 2,
                 title: '编辑配置',
@@ -137,7 +137,7 @@
         }
         
         // 删除配置
-        function delConfig(id) {
+        window.delConfig = function(id) {
             layer.confirm('确定要删除该配置吗？', function(index) {
                 layui.$.ajax({
                     url: '/backend/siteconfigs/del',

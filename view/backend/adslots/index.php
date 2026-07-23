@@ -160,7 +160,7 @@
         }
         
         // 添加广告位
-        function addAdSlot() {
+        window.addAdSlot = function() {
             layer.open({
                 type: 2,
                 title: '添加广告位',
@@ -173,7 +173,7 @@
         }
         
         // 编辑广告位
-        function editAdSlot(id) {
+        window.editAdSlot = function(id) {
             layer.open({
                 type: 2,
                 title: '编辑广告位',
@@ -186,7 +186,7 @@
         }
         
         // 删除广告位
-        function delAdSlot(id) {
+        window.delAdSlot = function(id) {
             layer.confirm('确定要删除该广告位吗？', function(index) {
                 layui.$.ajax({
                     url: '/backend/adslots/del',

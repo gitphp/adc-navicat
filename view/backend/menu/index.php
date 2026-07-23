@@ -180,7 +180,7 @@
             });
             
             // 添加菜单
-            function addMenu() {
+            window.addMenu = function() {
                 layer.open({
                     type: 2,
                     title: '添加菜单',
@@ -193,7 +193,7 @@
             }
             
             // 编辑菜单
-            function editMenu(id) {
+            window.editMenu = function(id) {
                 layer.open({
                     type: 2,
                     title: '编辑菜单',
@@ -206,7 +206,7 @@
             }
             
             // 删除菜单
-            function deleteMenu(id, name) {
+            window.deleteMenu = function(id, name) {
                 layer.confirm('确定要删除菜单「' + name + '」吗？', {
                     icon: 3,
                     title: '提示'
@@ -233,7 +233,7 @@
             }
             
             // 切换状态
-            function changeStatus(id, status) {
+            window.changeStatus = function(id, status) {
                 var statusText = status === 1 ? '启用' : '禁用';
                 layer.confirm('确定要' + statusText + '该菜单吗？', {
                     icon: 3,

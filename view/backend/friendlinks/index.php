@@ -142,7 +142,7 @@
         }
         
         // 添加友情链接
-        function addFriendLink() {
+        window.addFriendLink = function() {
             layer.open({
                 type: 2,
                 title: '添加友情链接',
@@ -155,7 +155,7 @@
         }
         
         // 编辑友情链接
-        function editFriendLink(id) {
+        window.editFriendLink = function(id) {
             layer.open({
                 type: 2,
                 title: '编辑友情链接',
@@ -168,7 +168,7 @@
         }
         
         // 删除友情链接
-        function delFriendLink(id) {
+        window.delFriendLink = function(id) {
             layer.confirm('确定要删除该友情链接吗？', function(index) {
                 layui.$.ajax({
                     url: '/backend/friendlinks/del',

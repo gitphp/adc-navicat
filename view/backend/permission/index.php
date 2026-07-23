@@ -219,7 +219,7 @@
             });
             
             // 添加权限
-            function addPermission() {
+            window.addPermission = function() {
                 layer.open({
                     type: 2,
                     title: '添加权限',
@@ -232,7 +232,7 @@
             }
             
             // 编辑权限
-            function editPermission(id) {
+            window.editPermission = function(id) {
                 layer.open({
                     type: 2,
                     title: '编辑权限',
@@ -245,7 +245,7 @@
             }
             
             // 删除权限
-            function deletePermission(id, name) {
+            window.deletePermission = function(id, name) {
                 layer.confirm('确定要删除权限「' + name + '」吗？', {
                     icon: 3,
                     title: '提示'
@@ -272,7 +272,7 @@
             }
             
             // 切换状态
-            function changeStatus(id, status) {
+            window.changeStatus = function(id, status) {
                 var statusText = status === 1 ? '启用' : '禁用';
                 layer.confirm('确定要' + statusText + '该权限吗？', {
                     icon: 3,

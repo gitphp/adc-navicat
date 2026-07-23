@@ -159,7 +159,7 @@
         });
         
         // 添加角色
-        function addRole() {
+        window.addRole = function() {
             layer.open({
                 type: 2,
                 title: '添加角色',
@@ -172,7 +172,7 @@
         }
         
         // 编辑角色
-        function editRole(id) {
+        window.editRole = function(id) {
             layer.open({
                 type: 2,
                 title: '编辑角色',
@@ -185,7 +185,7 @@
         }
         
         // 删除角色
-        function deleteRole(id, name) {
+        window.deleteRole = function(id, name) {
             layer.confirm('确定要删除角色「' + name + '」吗？', {
                 icon: 3,
                 title: '提示'
@@ -212,7 +212,7 @@
         }
         
         // 切换状态
-        function changeStatus(id, status) {
+        window.changeStatus = function(id, status) {
             var statusText = status === 1 ? '启用' : '禁用';
             layer.confirm('确定要' + statusText + '该角色吗？', {
                 icon: 3,

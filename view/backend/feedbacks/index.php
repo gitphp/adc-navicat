@@ -130,7 +130,7 @@
         }
         
         // 查看留言
-        function viewFeedback(id) {
+        window.viewFeedback = function(id) {
             layer.open({
                 type: 2,
                 title: '查看留言',
@@ -140,7 +140,7 @@
         }
         
         // 回复留言
-        function replyFeedback(id) {
+        window.replyFeedback = function(id) {
             layer.open({
                 type: 2,
                 title: '回复留言',
@@ -153,7 +153,7 @@
         }
         
         // 标记已处理
-        function handleFeedback(id) {
+        window.handleFeedback = function(id) {
             layer.confirm('确定要标记为已处理吗？', function(index) {
                 layui.$.ajax({
                     url: '/backend/feedbacks/handle',
@@ -174,7 +174,7 @@
         }
         
         // 删除留言
-        function delFeedback(id) {
+        window.delFeedback = function(id) {
             layer.confirm('确定要删除该留言吗？', function(index) {
                 layui.$.ajax({
                     url: '/backend/feedbacks/del',
