@@ -30,100 +30,99 @@ Route::group('backend', function() {
     Route::get('index/hello/:name', 'backend.index/hello');
     
     // 角色管理
-    Route::get('role', 'backend.role/index');
     Route::get('role/list', 'backend.role/list');
     Route::get('role/add', 'backend.role/add');
-    Route::post('role/save', 'backend.role/save');
     Route::get('role/edit', 'backend.role/edit');
+    Route::get('role/permission', 'backend.role/permission');
+    Route::get('role/menu', 'backend.role/menu');
+    Route::post('role/save', 'backend.role/save');
     Route::post('role/update', 'backend.role/update');
     Route::post('role/del', 'backend.role/del');
     Route::post('role/status', 'backend.role/status');
-    Route::get('role/permission', 'backend.role/permission');
     Route::post('role/savePermission', 'backend.role/savePermission');
-    Route::get('role/menu', 'backend.role/menu');
     Route::post('role/saveMenu', 'backend.role/saveMenu');
+    Route::get('role', 'backend.role/index');
     
     // 用户管理
-    Route::get('user', 'backend.backenduser/index');
     Route::get('user/list', 'backend.backenduser/list');
     Route::get('user/edit', 'backend.backenduser/edit');
     Route::post('user/updateRoles', 'backend.backenduser/updateRoles');
     Route::post('user/status', 'backend.backenduser/status');
     Route::post('user/del', 'backend.backenduser/del');
+    Route::get('user', 'backend.backenduser/index');
     
     // 权限管理
-    Route::get('permission', 'backend.permission/index');
     Route::get('permission/list', 'backend.permission/list');
     Route::get('permission/tree', 'backend.permission/tree');
     Route::get('permission/add', 'backend.permission/add');
-    Route::post('permission/save', 'backend.permission/save');
     Route::get('permission/edit', 'backend.permission/edit');
+    Route::post('permission/save', 'backend.permission/save');
     Route::post('permission/update', 'backend.permission/update');
     Route::post('permission/del', 'backend.permission/del');
     Route::post('permission/status', 'backend.permission/status');
+    Route::get('permission', 'backend.permission/index');
     
     // 菜单管理
-    Route::get('menu', 'backend.menu/index');
     Route::get('menu/list', 'backend.menu/list');
     Route::get('menu/tree', 'backend.menu/tree');
     Route::get('menu/add', 'backend.menu/add');
-    Route::post('menu/save', 'backend.menu/save');
     Route::get('menu/edit', 'backend.menu/edit');
+    Route::post('menu/save', 'backend.menu/save');
     Route::post('menu/update', 'backend.menu/update');
     Route::post('menu/del', 'backend.menu/del');
     Route::post('menu/status', 'backend.menu/status');
+    Route::get('menu', 'backend.menu/index');
     
     // 分类管理
-    Route::get('category', 'backend.backendcategory/index');
     Route::get('category/list', 'backend.backendcategory/list');
     Route::get('category/tree', 'backend.backendcategory/tree');
     Route::get('category/add', 'backend.backendcategory/add');
-    Route::post('category/save', 'backend.backendcategory/save');
     Route::get('category/edit', 'backend.backendcategory/edit');
+    Route::post('category/save', 'backend.backendcategory/save');
     Route::post('category/update', 'backend.backendcategory/update');
     Route::post('category/del', 'backend.backendcategory/del');
     Route::post('category/status', 'backend.backendcategory/status');
+    Route::get('category', 'backend.backendcategory/index');
     
     // 文章管理
-    Route::get('article', 'backend.backendarticle/index');
     Route::get('article/list', 'backend.backendarticle/list');
     Route::get('article/stats', 'backend.backendarticle/stats');
     Route::get('article/add', 'backend.backendarticle/add');
-    Route::post('article/save', 'backend.backendarticle/save');
     Route::get('article/edit', 'backend.backendarticle/edit');
+    Route::post('article/save', 'backend.backendarticle/save');
     Route::post('article/update', 'backend.backendarticle/update');
     Route::post('article/del', 'backend.backendarticle/del');
     Route::post('article/review', 'backend.backendarticle/review');
     Route::post('article/publish', 'backend.backendarticle/publish');
     Route::post('article/offline', 'backend.backendarticle/offline');
     Route::post('article/top', 'backend.backendarticle/top');
+    Route::get('article', 'backend.backendarticle/index');
     
     // 书签管理
-    Route::get('bookmark', 'backend.backendbookmark/index');
     Route::get('bookmark/list', 'backend.backendbookmark/list');
     Route::get('bookmark/add', 'backend.backendbookmark/add');
-    Route::post('bookmark/save', 'backend.backendbookmark/save');
     Route::get('bookmark/edit', 'backend.backendbookmark/edit');
+    Route::post('bookmark/save', 'backend.backendbookmark/save');
     Route::post('bookmark/update', 'backend.backendbookmark/update');
     Route::post('bookmark/del', 'backend.backendbookmark/del');
     Route::post('bookmark/status', 'backend.backendbookmark/status');
+    Route::get('bookmark', 'backend.backendbookmark/index');
     
     // 广告位管理
-    Route::get('adslots', 'backend.backendadslots/index');
     Route::get('adslots/list', 'backend.backendadslots/list');
     Route::get('adslots/add', 'backend.backendadslots/add');
-    Route::post('adslots/save', 'backend.backendadslots/save');
     Route::get('adslots/edit', 'backend.backendadslots/edit');
+    Route::post('adslots/save', 'backend.backendadslots/save');
     Route::post('adslots/update', 'backend.backendadslots/update');
     Route::post('adslots/del', 'backend.backendadslots/del');
     Route::post('adslots/status', 'backend.backendadslots/status');
+    Route::get('adslots', 'backend.backendadslots/index');
     
     // 广告管理（广告位主表）
-    Route::get('adpositions', 'backend.backendadpositions/index');
     Route::get('adpositions/list', 'backend.backendadpositions/list');
     Route::get('adpositions/add', 'backend.backendadpositions/add');
-    Route::post('adpositions/save', 'backend.backendadpositions/save');
     Route::get('adpositions/edit', 'backend.backendadpositions/edit');
+    Route::post('adpositions/save', 'backend.backendadpositions/save');
     Route::post('adpositions/update', 'backend.backendadpositions/update');
     Route::post('adpositions/del', 'backend.backendadpositions/del');
     Route::post('adpositions/submitAudit', 'backend.backendadpositions/submitAudit');
@@ -132,48 +131,49 @@ Route::group('backend', function() {
     Route::post('adpositions/start', 'backend.backendadpositions/start');
     Route::post('adpositions/pause', 'backend.backendadpositions/pause');
     Route::post('adpositions/offline', 'backend.backendadpositions/offline');
+    Route::get('adpositions', 'backend.backendadpositions/index');
     
     // 友情链接管理
-    Route::get('friendlinks', 'backend.backendfriendlinks/index');
     Route::get('friendlinks/list', 'backend.backendfriendlinks/list');
     Route::get('friendlinks/add', 'backend.backendfriendlinks/add');
-    Route::post('friendlinks/save', 'backend.backendfriendlinks/save');
     Route::get('friendlinks/edit', 'backend.backendfriendlinks/edit');
+    Route::post('friendlinks/save', 'backend.backendfriendlinks/save');
     Route::post('friendlinks/update', 'backend.backendfriendlinks/update');
     Route::post('friendlinks/del', 'backend.backendfriendlinks/del');
     Route::post('friendlinks/status', 'backend.backendfriendlinks/status');
+    Route::get('friendlinks', 'backend.backendfriendlinks/index');
     
     // 用户留言管理
-    Route::get('feedbacks', 'backend.backendfeedbacks/index');
     Route::get('feedbacks/list', 'backend.backendfeedbacks/list');
     Route::get('feedbacks/view', 'backend.backendfeedbacks/view');
     Route::get('feedbacks/reply', 'backend.backendfeedbacks/reply');
     Route::post('feedbacks/saveReply', 'backend.backendfeedbacks/saveReply');
     Route::post('feedbacks/del', 'backend.backendfeedbacks/del');
     Route::post('feedbacks/handle', 'backend.backendfeedbacks/handle');
+    Route::get('feedbacks', 'backend.backendfeedbacks/index');
     
     // 站点配置管理
-    Route::get('siteconfigs', 'backend.backendsiteconfigs/index');
     Route::get('siteconfigs/list', 'backend.backendsiteconfigs/list');
     Route::get('siteconfigs/groups', 'backend.backendsiteconfigs/groups');
     Route::get('siteconfigs/add', 'backend.backendsiteconfigs/add');
-    Route::post('siteconfigs/save', 'backend.backendsiteconfigs/save');
     Route::get('siteconfigs/edit', 'backend.backendsiteconfigs/edit');
+    Route::post('siteconfigs/save', 'backend.backendsiteconfigs/save');
     Route::post('siteconfigs/update', 'backend.backendsiteconfigs/update');
     Route::post('siteconfigs/del', 'backend.backendsiteconfigs/del');
     Route::post('siteconfigs/saveBatch', 'backend.backendsiteconfigs/saveBatch');
     Route::get('siteconfigs/groupConfig', 'backend.backendsiteconfigs/groupConfig');
+    Route::get('siteconfigs', 'backend.backendsiteconfigs/index');
     
     // 文章分类管理
-    Route::get('articlecategory', 'backend.backendarticlecategory/index');
     Route::get('articlecategory/list', 'backend.backendarticlecategory/list');
     Route::get('articlecategory/tree', 'backend.backendarticlecategory/tree');
     Route::get('articlecategory/add', 'backend.backendarticlecategory/add');
-    Route::post('articlecategory/save', 'backend.backendarticlecategory/save');
     Route::get('articlecategory/edit', 'backend.backendarticlecategory/edit');
+    Route::post('articlecategory/save', 'backend.backendarticlecategory/save');
     Route::post('articlecategory/update', 'backend.backendarticlecategory/update');
     Route::post('articlecategory/del', 'backend.backendarticlecategory/del');
     Route::post('articlecategory/status', 'backend.backendarticlecategory/status');
+    Route::get('articlecategory', 'backend.backendarticlecategory/index');
     
     // 招聘职位管理
     Route::get('bossjob/list', 'backend.backendbossjob/list');
@@ -188,11 +188,11 @@ Route::group('backend', function() {
     Route::get('bossjob', 'backend.backendbossjob/index');
     
     // 操作日志管理
-    Route::get('operationlog', 'backend.backendoperationlog/index');
     Route::get('operationlog/list', 'backend.backendoperationlog/list');
     Route::get('operationlog/view', 'backend.backendoperationlog/view');
     Route::get('operationlog/actions', 'backend.backendoperationlog/actions');
     Route::get('operationlog/bizTypes', 'backend.backendoperationlog/bizTypes');
+    Route::get('operationlog', 'backend.backendoperationlog/index');
 })->middleware(\app\middleware\Auth::class)->middleware(\app\middleware\OperationLogMiddleware::class);
 
 Route::get('think', function () {
