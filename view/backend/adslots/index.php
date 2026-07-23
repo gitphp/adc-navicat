@@ -122,6 +122,7 @@
                 page: true,
                 limit: 10,
                 limits: [10, 20, 50, 100],
+                where: {},
                 cols: [[
                     {field: 'id', title: 'ID', width: 80, sort: true},
                     {field: 'slot_code', title: '广告位编码', width: 180},

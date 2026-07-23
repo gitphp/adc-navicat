@@ -92,6 +92,7 @@
                 page: true,
                 limit: 10,
                 limits: [10, 20, 50, 100],
+                where: {},
                 cols: [[
                     {field: 'id', title: 'ID', width: 80, sort: true},
                     {field: 'fb_name', title: '联系人姓名', width: 120},

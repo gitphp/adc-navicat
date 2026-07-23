@@ -26,8 +26,12 @@ Route::get('backend/login', 'backend.login/index');
 // 后台首页路由（需认证）
 Route::group('backend', function() {
     // 首页
-    Route::get('index', 'backend.index/index');
+    Route::get('index/stats', 'backend.index/stats');
+    Route::get('index/logs', 'backend.index/logs');
+    Route::get('index/sysinfo', 'backend.index/sysinfo');
+    Route::post('index/feedback', 'backend.index/feedback');
     Route::get('index/hello/:name', 'backend.index/hello');
+    Route::get('index', 'backend.index/index');
     
     // 角色管理
     Route::get('role/list', 'backend.role/list');

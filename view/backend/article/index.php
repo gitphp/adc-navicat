@@ -305,6 +305,7 @@
                 page: true,
                 limit: 10,
                 limits: [10, 20, 50],
+                where: {},
                 cols: [[
                     {type: 'numbers', title: '序号', width: 80},
                     {field: 'title', title: '文章标题', width: 250, templet: function(d) {

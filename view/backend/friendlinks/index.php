@@ -107,6 +107,7 @@
                 page: true,
                 limit: 10,
                 limits: [10, 20, 50, 100],
+                where: {},
                 cols: [[
                     {field: 'id', title: 'ID', width: 80, sort: true},
                     {field: 'link_name', title: '网站名称', width: 150},

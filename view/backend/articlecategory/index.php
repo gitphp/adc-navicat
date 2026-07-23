@@ -50,6 +50,7 @@
             page: true,
             limit: 20,
             limits: [10, 20, 50, 100],
+            where: {},
             cols: [[
                 {field: 'id', width: 80, title: 'ID', sort: true},
                 {field: 'cat_name_display', width: 280, title: '分类名称'},

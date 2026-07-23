@@ -136,6 +136,7 @@
             page: true,
             limit: 10,
             limits: [10, 20, 50],
+            where: {},
             cols: [[
                 {type: 'numbers', title: '序号', width: 80},
                 {field: 'short_title', title: '短标题', width: 100},

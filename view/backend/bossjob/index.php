@@ -89,6 +89,7 @@ layui.use(['table', 'form', 'layer'], function() {
         page: true,
         limit: 20,
         limits: [10, 20, 50, 100],
+        where: {},
         cols: [[
             {field: 'id', width: 80, title: 'ID', sort: true},
             {field: 'job_title', width: 150, title: '职位名称'},

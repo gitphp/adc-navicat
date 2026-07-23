@@ -124,6 +124,7 @@
             page: true,
             limit: 10,
             limits: [10, 20, 50],
+            where: {},
             cols: [[
                 {type: 'numbers', title: '序号', width: 80},
                 {field: 'role_name', title: '角色名称', width: 150},

@@ -5,6 +5,7 @@ namespace app\controller\backend;
 
 use app\BaseController;
 use app\model\User;
+use app\model\OperationLog;
 use app\validate\LoginValidate;
 use think\facade\Session;
 use think\facade\View;
@@ -70,6 +71,9 @@ class Login extends BaseController
         
         // 验证密码
         if (!$user->verifyPassword($data['password'])) {
+            // 记录登录失败日志
+            OperationLog::recordLogin(0, $data['account'], $this->request->ip(), $this->request->header('user-agent', ''), 0, '密码错误');
+            
             return json([
                 'code' => 0,
                 'msg'  => '账号不存在或密码错误',
@@ -79,6 +83,9 @@ class Login extends BaseController
         
         // 更新登录信息
         $user->updateLoginInfo($this->request->ip());
+        
+        // 记录登录成功日志
+        OperationLog::recordLogin((int)$user->id, $user->user_nick ?: $user->user_name, $this->request->ip(), $this->request->header('user-agent', ''), 1, '');
         
         // 设置session（确保字段不为null）
         Session::set('user_id', $user->id);
@@ -157,6 +164,15 @@ class Login extends BaseController
      */
     public function logout()
     {
+        // 记录退出登录日志
+        $userId = Session::get('user_id');
+        $userInfo = Session::get('user_info');
+        $userNick = $userInfo['user_nick'] ?? $userInfo['user_name'] ?? '';
+        
+        if ($userId) {
+            OperationLog::recordLogin((int)$userId, $userNick, $this->request->ip(), $this->request->header('user-agent', ''), 1, '退出登录');
+        }
+        
         // 清除session
         Session::delete('user_id');
         Session::delete('user_info');

@@ -181,6 +181,7 @@
                 elem: '#categoryTable',
                 url: '/backend/category/list',
                 page: false,
+                where: {},
                 cols: [[
                     {type: 'numbers', title: '序号', width: 80},
                     {field: 'category_name_display', title: '分类名称', width: 350, templet: function(d) {

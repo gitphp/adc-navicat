@@ -167,6 +167,7 @@
                 page: true,
                 limit: 10,
                 limits: [10, 20, 50],
+                where: {},
                 cols: [[
                     {type: 'numbers', title: '序号', width: 80},
                     {field: 'user_name', title: '用户名', width: 120},

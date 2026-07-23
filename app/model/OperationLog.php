@@ -99,7 +99,6 @@ class OperationLog extends Model
     public static function record(array $data): bool
     {
         $log = new self();
-        $log->id = $data['id'] ?? '';
         $log->operator_id = $data['operator_id'] ?? 0;
         $log->operator_name = $data['operator_name'] ?? '';
         $log->biz_type = $data['biz_type'] ?? '';
@@ -107,8 +106,9 @@ class OperationLog extends Model
         $log->action = $data['action'] ?? '';
         $log->biz_id = $data['biz_id'] ?? 0;
         $log->biz_label = $data['biz_label'] ?? '';
-        $log->old_value = isset($data['old_value']) ? json_encode($data['old_value'], JSON_UNESCAPED_UNICODE) : null;
-        $log->new_value = isset($data['new_value']) ? json_encode($data['new_value'], JSON_UNESCAPED_UNICODE) : null;
+        // 由于模型已配置json字段自动序列化，直接传入数组即可
+        $log->old_value = $data['old_value'] ?? null;
+        $log->new_value = $data['new_value'] ?? null;
         $log->operator_status = $data['operator_status'] ?? 1;
         $log->error_msg = $data['error_msg'] ?? '';
         $log->client_ip = $data['client_ip'] ?? '';
