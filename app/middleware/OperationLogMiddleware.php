@@ -119,7 +119,7 @@ class OperationLogMiddleware
      * @param array $params
      * @param Response $response
      */
-    protected function log(int $operatorId, string $operatorName, string $bizType, string $actionType, string $method, string $url, string $methodFun, string $ip, string $userAgent, array $params, Response $response): void
+    protected function log(string $operatorId, string $operatorName, string $bizType, string $actionType, string $method, string $url, string $methodFun, string $ip, string $userAgent, array $params, Response $response): void
     {
         try {
             // 获取响应内容
@@ -139,9 +139,9 @@ class OperationLogMiddleware
                     
                     // 获取业务ID和标签
                     if (isset($result['data']['id'])) {
-                        $bizId = $result['data']['id'];
+                        $bizId = (string)($result['data']['id']);
                     } elseif (isset($params['id'])) {
-                        $bizId = $params['id'];
+                        $bizId = (string)($params['id']);
                     }
                     
                     // 获取业务标签
