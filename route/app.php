@@ -142,6 +142,15 @@ Route::group('backend', function() {
     Route::post('friendlinks/update', 'backend.backendfriendlinks/update');
     Route::post('friendlinks/del', 'backend.backendfriendlinks/del');
     Route::post('friendlinks/status', 'backend.backendfriendlinks/status');
+    
+    // 用户留言管理
+    Route::get('feedbacks', 'backend.backendfeedbacks/index');
+    Route::get('feedbacks/list', 'backend.backendfeedbacks/list');
+    Route::get('feedbacks/view', 'backend.backendfeedbacks/view');
+    Route::get('feedbacks/reply', 'backend.backendfeedbacks/reply');
+    Route::post('feedbacks/saveReply', 'backend.backendfeedbacks/saveReply');
+    Route::post('feedbacks/del', 'backend.backendfeedbacks/del');
+    Route::post('feedbacks/handle', 'backend.backendfeedbacks/handle');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
