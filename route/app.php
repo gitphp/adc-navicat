@@ -132,6 +132,16 @@ Route::group('backend', function() {
     Route::post('adpositions/start', 'backend.backendadpositions/start');
     Route::post('adpositions/pause', 'backend.backendadpositions/pause');
     Route::post('adpositions/offline', 'backend.backendadpositions/offline');
+    
+    // 友情链接管理
+    Route::get('friendlinks', 'backend.backendfriendlinks/index');
+    Route::get('friendlinks/list', 'backend.backendfriendlinks/list');
+    Route::get('friendlinks/add', 'backend.backendfriendlinks/add');
+    Route::post('friendlinks/save', 'backend.backendfriendlinks/save');
+    Route::get('friendlinks/edit', 'backend.backendfriendlinks/edit');
+    Route::post('friendlinks/update', 'backend.backendfriendlinks/update');
+    Route::post('friendlinks/del', 'backend.backendfriendlinks/del');
+    Route::post('friendlinks/status', 'backend.backendfriendlinks/status');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
