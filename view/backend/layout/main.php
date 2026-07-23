@@ -261,6 +261,8 @@
     <!-- 侧边栏菜单 -->
     <?= include 'sidebar.php' ?>
     
+    <script src="/static/backend/layui/layui.js"></script>
+    
     <!-- 主内容区域 -->
     <div class="main-container">
         <div class="content-wrapper">
@@ -269,7 +271,6 @@
         </div>
     </div>
     
-    <script src="/static/backend/layui/layui.js"></script>
     <script>
         // 菜单展开/收起
         function toggleMenu(id) {
@@ -309,13 +310,6 @@
                 window.location.href = '/backend/login/logout';
             }
         }
-        
-        // 初始化Layui
-        layui.use(['layer', 'form', 'table'], function() {
-            window.layer = layui.layer;
-            window.form = layui.form;
-            window.table = layui.table;
-        });
     </script>
 </body>
 </html>

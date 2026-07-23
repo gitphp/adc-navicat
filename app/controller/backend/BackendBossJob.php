@@ -27,31 +27,41 @@ class BackendBossJob extends BackendBase
      */
     public function list()
     {
+        // 获取分页参数
+        $page = $this->request->param('page', 1, 'intval');
+        $limit = $this->request->param('limit', 20, 'intval');
+        
         // 获取搜索条件
-        $jobTitle = $this->request->get('job_title', '');
-        $department = $this->request->get('department', '');
-        $jobStatus = $this->request->get('job_status', '');
-        $isHot = $this->request->get('is_hot', '');
+        $jobTitle = $this->request->param('job_title', '');
+        $department = $this->request->param('department', '');
+        $jobStatus = $this->request->param('job_status');
+        $isHot = $this->request->param('is_hot');
         
         // 构建查询
         $query = BossJob::whereNull('deleted_at')->order('job_sort', 'asc');
         
         // 搜索条件
-        if ($jobTitle) {
+        if (!empty($jobTitle)) {
             $query->where('job_title', 'like', '%' . $jobTitle . '%');
         }
-        if ($department) {
+        if (!empty($department)) {
             $query->where('department', 'like', '%' . $department . '%');
         }
-        if ($jobStatus !== '') {
-            $query->where('job_status', $jobStatus);
+        if ($jobStatus !== '' && $jobStatus !== null) {
+            $query->where('job_status', intval($jobStatus));
         }
-        if ($isHot !== '') {
-            $query->where('is_hot', $isHot);
+        if ($isHot !== '' && $isHot !== null) {
+            $query->where('is_hot', intval($isHot));
         }
         
-        // 分页
-        $list = $query->paginate($this->request->get('limit', 20));
+        // 分页查询
+        $list = $query->paginate([
+            'list_rows' => $limit,
+            'page' => $page,
+        ]);
+        
+        // 获取分页信息
+        $total = $list->total();
         
         // 处理数据
         $data = [];
@@ -80,7 +90,7 @@ class BackendBossJob extends BackendBase
         return json([
             'code'  => 0,
             'msg'   => 'success',
-            'count' => $list->total(),
+            'count' => $total,
             'data'  => $data,
         ]);
     }

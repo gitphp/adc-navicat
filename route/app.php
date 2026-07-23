@@ -176,16 +176,16 @@ Route::group('backend', function() {
     Route::post('articlecategory/status', 'backend.backendarticlecategory/status');
     
     // 招聘职位管理
-    Route::get('bossjob', 'backend.backendbossjob/index');
     Route::get('bossjob/list', 'backend.backendbossjob/list');
     Route::get('bossjob/add', 'backend.backendbossjob/add');
-    Route::post('bossjob/save', 'backend.backendbossjob/save');
     Route::get('bossjob/edit', 'backend.backendbossjob/edit');
+    Route::post('bossjob/save', 'backend.backendbossjob/save');
     Route::post('bossjob/update', 'backend.backendbossjob/update');
     Route::post('bossjob/del', 'backend.backendbossjob/del');
     Route::post('bossjob/publish', 'backend.backendbossjob/publish');
     Route::post('bossjob/close', 'backend.backendbossjob/close');
     Route::post('bossjob/hot', 'backend.backendbossjob/hot');
+    Route::get('bossjob', 'backend.backendbossjob/index');
     
     // 操作日志管理
     Route::get('operationlog', 'backend.backendoperationlog/index');
