@@ -164,6 +164,17 @@ Route::group('backend', function() {
     Route::post('siteconfigs/saveBatch', 'backend.backendsiteconfigs/saveBatch');
     Route::get('siteconfigs/groupConfig', 'backend.backendsiteconfigs/groupConfig');
     
+    // 文章分类管理
+    Route::get('articlecategory', 'backend.backendarticlecategory/index');
+    Route::get('articlecategory/list', 'backend.backendarticlecategory/list');
+    Route::get('articlecategory/tree', 'backend.backendarticlecategory/tree');
+    Route::get('articlecategory/add', 'backend.backendarticlecategory/add');
+    Route::post('articlecategory/save', 'backend.backendarticlecategory/save');
+    Route::get('articlecategory/edit', 'backend.backendarticlecategory/edit');
+    Route::post('articlecategory/update', 'backend.backendarticlecategory/update');
+    Route::post('articlecategory/del', 'backend.backendarticlecategory/del');
+    Route::post('articlecategory/status', 'backend.backendarticlecategory/status');
+    
     // 操作日志管理
     Route::get('operationlog', 'backend.backendoperationlog/index');
     Route::get('operationlog/list', 'backend.backendoperationlog/list');

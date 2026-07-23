@@ -47,7 +47,7 @@ class ConArticle extends Model
     use SoftDelete;
     
     // 设置表名
-    protected $name = 'con_article';
+    protected $name = 'articles';
     
     // 设置主键
     protected $pk = 'id';
