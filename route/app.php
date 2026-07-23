@@ -16,11 +16,12 @@ Route::get('login', function() {
 });
 
 // 后台登录路由
-Route::get('backend/login', 'backend.login/index');
-Route::post('backend/login/doLogin', 'backend.login/doLogin');
-Route::get('backend/login/logout', 'backend.login/logout');
-Route::get('backend/login/captcha', 'backend.login/captcha');
+Route::get('backend/login/checkSession', 'backend.login/checkSession');
 Route::get('backend/login/check', 'backend.login/check');
+Route::get('backend/login/captcha', 'backend.login/captcha');
+Route::get('backend/login/logout', 'backend.login/logout');
+Route::post('backend/login/doLogin', 'backend.login/doLogin');
+Route::get('backend/login', 'backend.login/index');
 
 // 后台首页路由（需认证）
 Route::group('backend', function() {

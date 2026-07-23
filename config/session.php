@@ -16,4 +16,6 @@ return [
     'expire'         => 1440,
     // 前缀
     'prefix'         => '',
+    // 自定义session保存路径
+    'path'           => runtime_path() . 'session',
 ];

@@ -29,11 +29,11 @@ class AuthRolePermissions extends Model
     
     /**
      * 批量保存角色权限
-     * @param int $roleId 角色ID
+     * @param string $roleId 角色ID（雪花ID）
      * @param array $permissionIds 权限ID数组
      * @return bool
      */
-    public static function savePermissions(int $roleId, array $permissionIds): bool
+    public static function savePermissions(string $roleId, array $permissionIds): bool
     {
         try {
             // 删除旧关联
@@ -59,10 +59,10 @@ class AuthRolePermissions extends Model
     
     /**
      * 获取角色的权限ID列表
-     * @param int $roleId 角色ID
+     * @param string $roleId 角色ID（雪花ID）
      * @return array
      */
-    public static function getPermissionIds(int $roleId): array
+    public static function getPermissionIds(string $roleId): array
     {
         $list = self::where('role_id', $roleId)->column('permission_id');
         return $list ? $list : [];

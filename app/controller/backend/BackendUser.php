@@ -38,8 +38,8 @@ class BackendUser extends BaseController
         $userMobile = $this->request->get('user_mobile', '');
         $userStatus = $this->request->get('user_status', '');
         
-        // 构建查询
-        $query = User::where('is_deleted', 0)->order('created_at', 'desc');
+        // 构建查询（软删除会自动过滤）
+        $query = User::order('created_at', 'desc');
         
         // 搜索条件
         if ($userName) {
@@ -120,7 +120,7 @@ class BackendUser extends BaseController
      */
     public function edit($id)
     {
-        $user = User::where('id', $id)->where('is_deleted', 0)->find();
+        $user = User::find($id);
         
         if (!$user) {
             return json([
@@ -160,7 +160,7 @@ class BackendUser extends BaseController
             ]);
         }
         
-        $user = User::where('id', $userId)->where('is_deleted', 0)->find();
+        $user = User::find($userId);
         
         if (!$user) {
             return json([
@@ -215,7 +215,7 @@ class BackendUser extends BaseController
             ]);
         }
         
-        $user = User::where('id', $id)->where('is_deleted', 0)->find();
+        $user = User::find($id);
         
         if (!$user) {
             return json([
@@ -252,7 +252,7 @@ class BackendUser extends BaseController
             ]);
         }
         
-        $user = User::where('id', $id)->where('is_deleted', 0)->find();
+        $user = User::find($id);
         
         if (!$user) {
             return json([
@@ -263,8 +263,7 @@ class BackendUser extends BaseController
         }
         
         // 软删除
-        $user->is_deleted = 1;
-        $user->save();
+        $user->delete();
         
         return json([
             'code' => 1,

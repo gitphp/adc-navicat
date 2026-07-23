@@ -29,11 +29,11 @@ class AuthRoleMenus extends Model
     
     /**
      * 批量保存角色菜单
-     * @param int $roleId 角色ID
+     * @param string $roleId 角色ID（雪花ID）
      * @param array $menuIds 菜单ID数组
      * @return bool
      */
-    public static function saveMenus(int $roleId, array $menuIds): bool
+    public static function saveMenus(string $roleId, array $menuIds): bool
     {
         try {
             // 删除旧关联
@@ -59,10 +59,10 @@ class AuthRoleMenus extends Model
     
     /**
      * 获取角色的菜单ID列表
-     * @param int $roleId 角色ID
+     * @param string $roleId 角色ID（雪花ID）
      * @return array
      */
-    public static function getMenuIds(int $roleId): array
+    public static function getMenuIds(string $roleId): array
     {
         $list = self::where('role_id', $roleId)->column('menu_id');
         return $list ? $list : [];

@@ -22,7 +22,7 @@ use think\Model;
  * @property string $register_ip 注册IP
  * @property string $register_time 注册时间
  * @property int $real_auth_status 实名状态
- * @property int $is_deleted 软删除
+ * @property string $deleted_at 删除时间
  * @property string $created_at 创建时间
  * @property string $updated_at 更新时间
  */
@@ -34,9 +34,9 @@ class User extends Model
     // 设置主键
     protected $pk = 'id';
 
-    // 软删除字段
-    protected $deleteTime = 'is_deleted';
-    protected $defaultSoftDelete = 0;
+    // 软删除字段（datetime类型）
+    protected $deleteTime = 'deleted_at';
+    protected $defaultSoftDelete = null;
 
     // 自动写入时间戳
     protected $autoWriteTimestamp = true;
@@ -89,7 +89,6 @@ class User extends Model
         return self::where('user_name', $account)
             ->whereOr('user_mobile', $account)
             ->whereOr('user_email', $account)
-            ->where('is_deleted', 0)
             ->find();
     }
 

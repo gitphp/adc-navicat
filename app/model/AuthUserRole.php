@@ -29,11 +29,11 @@ class AuthUserRole extends Model
     
     /**
      * 批量保存用户角色
-     * @param int $userId 用户ID
+     * @param string $userId 用户ID（雪花ID）
      * @param array $roleIds 角色ID数组
      * @return bool
      */
-    public static function saveRoles(int $userId, array $roleIds): bool
+    public static function saveRoles(string $userId, array $roleIds): bool
     {
         try {
             // 删除旧关联
@@ -59,10 +59,10 @@ class AuthUserRole extends Model
     
     /**
      * 获取用户的角色ID列表
-     * @param int $userId 用户ID
+     * @param string $userId 用户ID（雪花ID）
      * @return array
      */
-    public static function getRoleIds(int $userId): array
+    public static function getRoleIds(string $userId): array
     {
         $list = self::where('user_id', $userId)->column('role_id');
         return $list ? $list : [];

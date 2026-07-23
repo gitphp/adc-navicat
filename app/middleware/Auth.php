@@ -6,7 +6,6 @@ namespace app\middleware;
 use app\helper\PermissionHelper;
 use app\model\User;
 use think\facade\Session;
-use think\facade\Url;
 
 /**
  * 认证中间件
@@ -36,12 +35,12 @@ class Auth
             }
             
             // 跳转到后台登录页面
-            return redirect(Url::build('backend.login/index'));
+            return redirect('/backend/login');
         }
         
-        // 检查用户是否存在且正常
+        // 检查用户是否存在且正常（软删除会自动过滤）
         $user = User::find($userId);
-        if (!$user || !$user->isActive() || $user->is_deleted) {
+        if (!$user || !$user->isActive()) {
             Session::delete('user_id');
             Session::delete('user_info');
             
@@ -53,7 +52,7 @@ class Auth
                 ]);
             }
             
-            return redirect(Url::build('backend.login/index'));
+            return redirect('/backend/login');
         }
         
         // 将用户信息注入到request中
@@ -70,7 +69,7 @@ class Auth
                 ]);
             }
             
-            return '<h1>403 没有权限访问该资源</h1>';
+            return response('<h1>403 没有权限访问该资源</h1>', 403);
         }
         
         return $next($request);
