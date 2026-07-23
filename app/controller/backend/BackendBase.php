@@ -3,15 +3,15 @@ declare (strict_types = 1);
 
 namespace app\controller\backend;
 
+use app\BaseController;
 use app\helper\PermissionHelper;
 use think\facade\Session;
-use think\Controller;
 
 /**
  * 后台基础控制器
  * 所有后台控制器应继承此类
  */
-class BackendBase extends Controller
+class BackendBase extends BaseController
 {
     /**
      * 用户信息
@@ -59,15 +59,21 @@ class BackendBase extends Controller
     protected function render(string $template, array $data = []): \think\Response
     {
         // 合并公共数据
-        $data = array_merge([
+        $viewData = array_merge([
             'user_info' => $this->userInfo,
             'menu_tree' => $this->menuTree,
             'title'     => $this->title,
-            'content'   => $this->fetch($template, $data),
         ], $data);
         
+        // 渲染子页面内容
+        ob_start();
+        view($template, $viewData)->send();
+        $content = ob_get_clean();
+        
         // 渲染主布局
-        return $this->fetch('layout/main', $data);
+        return view('layout/main', array_merge($viewData, [
+            'content' => $content,
+        ]));
     }
     
     /**
