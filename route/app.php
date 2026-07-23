@@ -117,6 +117,21 @@ Route::group('backend', function() {
     Route::post('adslots/update', 'backend.backendadslots/update');
     Route::post('adslots/del', 'backend.backendadslots/del');
     Route::post('adslots/status', 'backend.backendadslots/status');
+    
+    // 广告管理（广告位主表）
+    Route::get('adpositions', 'backend.backendadpositions/index');
+    Route::get('adpositions/list', 'backend.backendadpositions/list');
+    Route::get('adpositions/add', 'backend.backendadpositions/add');
+    Route::post('adpositions/save', 'backend.backendadpositions/save');
+    Route::get('adpositions/edit', 'backend.backendadpositions/edit');
+    Route::post('adpositions/update', 'backend.backendadpositions/update');
+    Route::post('adpositions/del', 'backend.backendadpositions/del');
+    Route::post('adpositions/submitAudit', 'backend.backendadpositions/submitAudit');
+    Route::post('adpositions/auditPass', 'backend.backendadpositions/auditPass');
+    Route::post('adpositions/auditReject', 'backend.backendadpositions/auditReject');
+    Route::post('adpositions/start', 'backend.backendadpositions/start');
+    Route::post('adpositions/pause', 'backend.backendadpositions/pause');
+    Route::post('adpositions/offline', 'backend.backendadpositions/offline');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
