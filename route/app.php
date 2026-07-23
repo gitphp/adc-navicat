@@ -151,6 +151,18 @@ Route::group('backend', function() {
     Route::post('feedbacks/saveReply', 'backend.backendfeedbacks/saveReply');
     Route::post('feedbacks/del', 'backend.backendfeedbacks/del');
     Route::post('feedbacks/handle', 'backend.backendfeedbacks/handle');
+    
+    // 站点配置管理
+    Route::get('siteconfigs', 'backend.backendsiteconfigs/index');
+    Route::get('siteconfigs/list', 'backend.backendsiteconfigs/list');
+    Route::get('siteconfigs/groups', 'backend.backendsiteconfigs/groups');
+    Route::get('siteconfigs/add', 'backend.backendsiteconfigs/add');
+    Route::post('siteconfigs/save', 'backend.backendsiteconfigs/save');
+    Route::get('siteconfigs/edit', 'backend.backendsiteconfigs/edit');
+    Route::post('siteconfigs/update', 'backend.backendsiteconfigs/update');
+    Route::post('siteconfigs/del', 'backend.backendsiteconfigs/del');
+    Route::post('siteconfigs/saveBatch', 'backend.backendsiteconfigs/saveBatch');
+    Route::get('siteconfigs/groupConfig', 'backend.backendsiteconfigs/groupConfig');
 })->middleware(\app\middleware\Auth::class);
 
 Route::get('think', function () {
