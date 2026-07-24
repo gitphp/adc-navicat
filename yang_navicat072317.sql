@@ -11,7 +11,7 @@
  Target Server Version : 80046 (8.0.46)
  File Encoding         : 65001
 
- Date: 23/07/2026 20:47:15
+ Date: 24/07/2026 10:11:36
 */
 
 SET NAMES utf8mb4;
@@ -244,7 +244,7 @@ CREATE TABLE `articles`  (
   INDEX `idx_published_at`(`published_at` ASC) USING BTREE,
   INDEX `idx_created_at`(`created_at` ASC) USING BTREE,
   INDEX `idx_deleted_at`(`deleted_at` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章主表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733863034423262 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章主表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of articles
@@ -282,7 +282,7 @@ CREATE TABLE `auth_menus`  (
   INDEX `idx_permission_code`(`permission_code` ASC) USING BTREE,
   INDEX `idx_status`(`menu_status` ASC) USING BTREE,
   INDEX `idx_deleted_at`(`deleted_at` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1920733860755430000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '菜单/功能表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733863034403263 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '菜单/功能表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of auth_menus
@@ -726,7 +726,7 @@ INSERT INTO `boss_job` VALUES (920733863004423258, 'PHP开发实习生', '技术
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
-  `id` bigint UNSIGNED NOT NULL COMMENT '主键(雪花ID)',
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键(雪花ID)',
   `category_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '分类名称',
   `parent_id` bigint UNSIGNED NOT NULL DEFAULT 0 COMMENT '父级分类ID 0是一级分类',
   `show_type` tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '可见性类型 0=全部可见 1=指定客户可见 2=指定客户不可见',
@@ -743,7 +743,7 @@ CREATE TABLE `category`  (
   `deleted_by` bigint UNSIGNED NULL DEFAULT NULL COMMENT '删除人',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `category_parent_id_index`(`parent_id` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '分类表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 935126090643669000 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '分类表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of category
@@ -849,7 +849,7 @@ CREATE TABLE `operation_log`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `merchant_activity_log_operator_id_index`(`operator_id` ASC) USING BTREE,
   INDEX `merchant_activity_log_biz_index`(`biz_type` ASC, `biz_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 935126090643669049 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户操作动态表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 935126090643669063 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户操作动态表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of operation_log
@@ -910,6 +910,20 @@ INSERT INTO `operation_log` VALUES (935126090643669045, 934035802554576897, '匿
 INSERT INTO `operation_log` VALUES (935126090643669046, 934035802554576897, '匿名用户', 'backend.category', 'backend.category_view', 'VIEW', 0, '', NULL, '[]', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/category/list', 'backend.Backendcategory::list', '2026-07-23 20:41:30.000000');
 INSERT INTO `operation_log` VALUES (935126090643669047, 934035802554576897, '匿名用户', 'backend.bookmark', 'backend.bookmark_view', 'VIEW', 0, '', NULL, '[]', 1, '', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bookmark/index', 'backend.Backendbookmark::index', '2026-07-23 20:42:22.000000');
 INSERT INTO `operation_log` VALUES (935126090643669048, 934035802554576897, '匿名用户', 'backend.bookmark', 'backend.bookmark_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"10\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bookmark/list?page=1&limit=10', 'backend.Backendbookmark::list', '2026-07-23 20:42:23.000000');
+INSERT INTO `operation_log` VALUES (935126090643669049, 934035802554576897, '匿名用户', 'backend.index', 'backend.index_view', 'VIEW', 0, '', NULL, '[]', 1, '', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/index', 'backend.Index::index', '2026-07-23 20:47:41.000000');
+INSERT INTO `operation_log` VALUES (935126090643669050, 934035802554576897, '匿名用户', 'backend.index', 'backend.index_view', 'VIEW', 0, '', NULL, '[]', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/index/logs', 'backend.Index::logs', '2026-07-23 20:47:42.000000');
+INSERT INTO `operation_log` VALUES (935126090643669051, 934035802554576897, '匿名用户', 'backend.bookmark', 'backend.bookmark_view', 'VIEW', 0, '', NULL, '[]', 1, '', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bookmark/index', 'backend.Backendbookmark::index', '2026-07-23 20:47:45.000000');
+INSERT INTO `operation_log` VALUES (935126090643669052, 934035802554576897, '匿名用户', 'backend.bookmark', 'backend.bookmark_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"10\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bookmark/list?page=1&limit=10', 'backend.Backendbookmark::list', '2026-07-23 20:47:46.000000');
+INSERT INTO `operation_log` VALUES (935126090643669053, 934035802554576897, '匿名用户', 'backend.user', 'backend.user_view', 'VIEW', 0, '', NULL, '[]', 1, '', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/user', 'backend.Backenduser::index', '2026-07-23 20:47:52.000000');
+INSERT INTO `operation_log` VALUES (935126090643669054, 934035802554576897, '匿名用户', 'backend.user', 'backend.user_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"10\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/user/list?page=1&limit=10', 'backend.Backenduser::list', '2026-07-23 20:47:54.000000');
+INSERT INTO `operation_log` VALUES (935126090643669055, 934035802554576897, '匿名用户', 'backend.menu', 'backend.menu_view', 'VIEW', 0, '', NULL, '[]', 1, '', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/menu', 'backend.Menu::index', '2026-07-23 20:47:56.000000');
+INSERT INTO `operation_log` VALUES (935126090643669056, 934035802554576897, '匿名用户', 'backend.menu', 'backend.menu_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"10\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/menu/list?page=1&limit=10', 'backend.Menu::list', '2026-07-23 20:47:57.000000');
+INSERT INTO `operation_log` VALUES (935126090643669057, 934035802554576897, '匿名用户', 'backend.bossjob', 'backend.bossjob_view', 'VIEW', 0, '', NULL, '[]', 1, '', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bossjob', 'backend.Backendbossjob::index', '2026-07-23 20:48:05.000000');
+INSERT INTO `operation_log` VALUES (935126090643669058, 934035802554576897, '匿名用户', 'backend.bossjob', 'backend.bossjob_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"20\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bossjob/list?page=1&limit=20', 'backend.Backendbossjob::list', '2026-07-23 20:48:06.000000');
+INSERT INTO `operation_log` VALUES (935126090643669059, 934035802554576897, '匿名用户', 'backend.bossjob', 'backend.bossjob_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"20\", \"is_hot\": \"\", \"job_title\": \"\", \"department\": \"\", \"job_status\": \"\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bossjob/list?page=1&limit=20&job_title=&department=&job_status=&is_hot=', 'backend.Backendbossjob::list', '2026-07-23 20:48:48.000000');
+INSERT INTO `operation_log` VALUES (935126090643669060, 934035802554576897, '匿名用户', 'backend.bossjob', 'backend.bossjob_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"20\", \"is_hot\": \"\", \"job_title\": \"\", \"department\": \"\", \"job_status\": \"\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bossjob/list?page=1&limit=20&job_title=&department=&job_status=&is_hot=', 'backend.Backendbossjob::list', '2026-07-23 20:48:50.000000');
+INSERT INTO `operation_log` VALUES (935126090643669061, 934035802554576897, '匿名用户', 'backend.bossjob', 'backend.bossjob_view', 'VIEW', 0, '', NULL, '[]', 1, '', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bossjob/add', 'backend.Backendbossjob::add', '2026-07-23 20:48:53.000000');
+INSERT INTO `operation_log` VALUES (935126090643669062, 934035802554576897, '匿名用户', 'backend.bossjob', 'backend.bossjob_view', 'VIEW', 0, '', NULL, '{\"page\": \"1\", \"limit\": \"20\", \"is_hot\": \"\", \"job_title\": \"\", \"department\": \"\", \"job_status\": \"\"}', 0, 'success', '192.168.124.87', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0', '/backend/bossjob/list?page=1&limit=20&job_title=&department=&job_status=&is_hot=', 'backend.Backendbossjob::list', '2026-07-23 20:48:59.000000');
 
 -- ----------------------------
 -- Table structure for site_configs
@@ -946,7 +960,7 @@ INSERT INTO `site_configs` VALUES (920733863044423254, 'social', 'weibo', 'compa
 -- ----------------------------
 DROP TABLE IF EXISTS `user_account`;
 CREATE TABLE `user_account`  (
-  `id` bigint UNSIGNED NOT NULL COMMENT '用户唯一主键ID（雪花ID，不自增，分布式安全）',
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户唯一主键ID（雪花ID，不自增，分布式安全）',
   `user_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '账号用户名，唯一，可用于登录',
   `user_mobile` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号，唯一索引，登录首选',
   `user_email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '邮箱，唯一索引，找回密码',
@@ -971,7 +985,7 @@ CREATE TABLE `user_account`  (
   UNIQUE INDEX `uk_email`(`user_email` ASC) USING BTREE,
   INDEX `idx_status_auth`(`user_status` ASC, `real_auth_status` ASC) USING BTREE,
   INDEX `idx_deleted_time`(`created_at` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户账号主表｜登录、安全、状态核心数据' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 934035802554576899 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户账号主表｜登录、安全、状态核心数据' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_account
@@ -1006,7 +1020,7 @@ CREATE TABLE `user_login_record`  (
   `login_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_user_time`(`user_id` ASC, `login_at` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户登录日志审计表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733863030423263 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户登录日志审计表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_login_record
@@ -1017,7 +1031,7 @@ CREATE TABLE `user_login_record`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE `user_profile`  (
-  `id` bigint UNSIGNED NOT NULL COMMENT '与user_account.id一一对应，一对一绑定',
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '与user_account.id一一对应，一对一绑定',
   `nick_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户昵称',
   `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像CDN地址',
   `gender` tinyint NOT NULL DEFAULT 0 COMMENT '0未知 1男 2女',
@@ -1031,7 +1045,7 @@ CREATE TABLE `user_profile`  (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户基础资料附表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733863014423263 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = '用户基础资料附表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_profile
@@ -1042,7 +1056,7 @@ CREATE TABLE `user_profile`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user_real_info`;
 CREATE TABLE `user_real_info`  (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `real_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'AES加密：真实姓名',
   `id_card_no` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT 'AES加密：身份证号码',
   `id_card_front` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '身份证正面文件CDN',
@@ -1053,7 +1067,7 @@ CREATE TABLE `user_real_info`  (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户实名认证敏感信息表｜数据加密存储' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733863033423263 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户实名认证敏感信息表｜数据加密存储' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_real_info
@@ -1076,7 +1090,7 @@ CREATE TABLE `user_third_bind`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_type_openid`(`third_type` ASC, `third_openid` ASC) USING BTREE,
   INDEX `idx_user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '第三方账号绑定表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 920733861034423263 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '第三方账号绑定表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_third_bind

@@ -2,8 +2,8 @@
     <!-- Logo -->
     <div class="sidebar-brand">
         <a href="/backend/index" class="brand-link">
-            <span class="brand-logo">m</span>
-            <span class="brand-text">8M8 后台管理</span>
+            <span class="brand-logo">Y</span>
+            <span class="brand-text">名杨系统 后台管理</span>
         </a>
     </div>
 

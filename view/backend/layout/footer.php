@@ -1,9 +1,9 @@
 <div class="footer">
     <div class="footer-left">
-        Copyright &copy; 2018 8m8 All rights reserved.
+        Copyright &copy; 2026 Sunny All rights reserved.
     </div>
     <div class="footer-right">
-        8M8 v6.5
+        Sunny CMS v1.0
     </div>
 </div>
 
